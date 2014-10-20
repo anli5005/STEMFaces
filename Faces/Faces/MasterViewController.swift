@@ -49,21 +49,32 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
-        var error: NSError?
-        let filePath = docPath.stringByAppendingPathComponent("test2.json")
-        "[]".writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
-        if error != nil {
-            let errorView = UIAlertView()
-            errorView.title = "Error"
-            errorView.message = error!.localizedDescription
-            errorView.addButtonWithTitle("OK")
-            errorView.cancelButtonIndex = 0
-            errorView.show()
-        } else {
-            objects.insert(filePath, atIndex: 0)
-            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        }
+        let promptControl = UIAlertController(title: "Set Name", message: nil, preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        promptControl.addAction(cancelAction)
+        promptControl.addAction(UIAlertAction(title: "Add", style: UIAlertActionStyle.Default, handler: { (alertAction: UIAlertAction!) in
+            if let name = (promptControl.textFields![0] as UITextField).text {
+                var error: NSError?
+                let filePath = docPath.stringByAppendingPathComponent(name)
+                NSFileManager.defaultManager().createDirectoryAtPath(filePath, withIntermediateDirectories: false, attributes: nil, error: &error)
+                if error != nil {
+                    let errorView = UIAlertView()
+                    errorView.title = "Error"
+                    errorView.message = error!.localizedDescription
+                    errorView.addButtonWithTitle("OK")
+                    errorView.cancelButtonIndex = 0
+                    errorView.show()
+                } else {
+                    self.objects.insert(filePath, atIndex: 0)
+                    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+                    self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                }
+            }
+        }))
+        promptControl.addTextFieldWithConfigurationHandler({ (textField) in
+            
+            })
+        presentViewController(promptControl, animated: true, completion: {})
     }
 
     // MARK: - Segues
@@ -88,14 +99,18 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        let count = objects.count
+        if NSFileManager.defaultManager().fileExistsAtPath(docPath.stringByAppendingPathComponent(".DS_Store")) {
+            return count - 1
+        }
+        return count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
 
         let object = objects[indexPath.row] as String
-        cell.textLabel?.text = object.lastPathComponent.stringByDeletingPathExtension
+        cell.textLabel.text = object.lastPathComponent
         return cell
     }
 
@@ -106,8 +121,19 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            objects.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            var error: NSError?
+            NSFileManager.defaultManager().removeItemAtPath(docPath.stringByAppendingPathComponent(objects[indexPath.row]), error: &error)
+            if error == nil {
+                objects.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            } else {
+                let alert = UIAlertView()
+                alert.title = "Error deleting set"
+                alert.message = error!.localizedDescription
+                alert.addButtonWithTitle("OK")
+                alert.cancelButtonIndex = 0
+                alert.show()
+            }
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
