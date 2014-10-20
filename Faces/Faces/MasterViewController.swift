@@ -8,6 +8,10 @@
 
 import UIKit
 
+let docPath = {
+    NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last! as String
+}()
+
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
