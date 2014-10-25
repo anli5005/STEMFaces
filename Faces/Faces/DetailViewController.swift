@@ -54,7 +54,10 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view,
+        // Add Add button
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject")
+        self.navigationItem.rightBarButtonItem = addButton
+        // Do any additional setup after loading the view
         self.configureView()
     }
     
@@ -65,7 +68,24 @@ class DetailViewController: UIViewController {
     
     func insertNewObject() {
         if let detail = detailItem as? String {
-            
+            // Make a face object
+            var face = [String: AnyObject]()
+            // Get a face ID
+            if let lastFace = faces.last {
+                let lastId = lastFace["id"] as Int
+                face["id"] = lastId + 1
+            } else {
+                face["id"] = 0
+            }
+            // Set default face details
+            face["name"] = "Person"
+            face["gender"] = ""
+            face["about"] = ""
+            // Add face to face array
+            faces.append(face)
+            /* An automatic segue to face editing scene will be implemented soon.
+               For now, the user can tap to edit the new face.
+            */
         }
     }
     
