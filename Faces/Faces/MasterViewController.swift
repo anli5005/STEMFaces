@@ -65,7 +65,7 @@ class MasterViewController: UITableViewController {
                     errorView.cancelButtonIndex = 0
                     errorView.show()
                 } else {
-                    self.objects.insert(filePath, atIndex: 0)
+                    self.objects.insert(name, atIndex: 0)
                     let indexPath = NSIndexPath(forRow: 0, inSection: 0)
                     self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                 }
