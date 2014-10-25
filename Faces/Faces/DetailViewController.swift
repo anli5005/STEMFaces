@@ -11,6 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var faces = [[String: AnyObject]]()
+    private var setLoaded = false
     
     var detailItem: AnyObject? {
         didSet {
@@ -33,6 +34,19 @@ class DetailViewController: UIViewController {
             if !exists {
                 fileManager.createDirectoryAtPath(setFolder.stringByAppendingPathComponent("Images"), withIntermediateDirectories: false, attributes: nil, error: nil)
             }
+            
+            if !setLoaded && fileManager.fileExistsAtPath(setFolder.stringByAppendingPathComponent("Data.json")) {
+                // Load the face data
+                if let data = NSData(contentsOfFile: setFolder.stringByAppendingPathComponent("Data.json")) {
+                    var error: NSError?
+                    if let jsonObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? [[String: AnyObject]] {
+                        faces = jsonObject
+                    } else {
+                        println("Error parsing data: \(error!.localizedDescription)")
+                    }
+                }
+            }
+            setLoaded = true
             
             navigationItem.title = detail
         }
@@ -64,7 +78,6 @@ class DetailViewController: UIViewController {
             data?.writeToFile(docPath.stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), atomically: true)
         }
     }
-    
     
 }
 
