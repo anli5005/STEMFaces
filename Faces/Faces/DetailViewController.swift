@@ -58,6 +58,8 @@ class DetailViewController: UICollectionViewController {
         // Add Add button
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject")
         self.navigationItem.rightBarButtonItem = addButton
+        // Show toolbar
+        navigationController?.toolbarHidden = false
         // Do any additional setup after loading the view
         self.configureView()
     }
@@ -100,6 +102,9 @@ class DetailViewController: UICollectionViewController {
             if let e = error { println("Error making data: \(e.localizedDescription)") }
             data?.writeToFile(docPath.stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), atomically: true)
         }
+        
+        // Hide toolbar
+        navigationController?.toolbarHidden = true
     }
     
     // MARK: Collection View Controller
