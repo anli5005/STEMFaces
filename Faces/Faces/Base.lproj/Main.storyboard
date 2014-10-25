@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -100,20 +101,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="s8Z-AI-CR1">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="158" height="147"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Face Card" id="mRH-B5-NI6">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Face Card" id="mRH-B5-NI6" customClass="FaceCardCollectionViewCell" customModule="Faces" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="158" height="147"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJ3-My-vIM">
+                                            <rect key="frame" x="8" y="118" width="142" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="PMR-9u-rf7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g15-id-agf">
+                                            <rect key="frame" x="8" y="8" width="142" height="102"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="g15-id-agf" firstAttribute="trailing" secondItem="mRH-B5-NI6" secondAttribute="trailingMargin" id="CLp-tX-fIb"/>
+                                    <constraint firstItem="g15-id-agf" firstAttribute="leading" secondItem="OJ3-My-vIM" secondAttribute="leading" id="eEl-lX-VKX"/>
+                                    <constraint firstItem="g15-id-agf" firstAttribute="top" secondItem="mRH-B5-NI6" secondAttribute="topMargin" id="eFO-RR-zif"/>
+                                    <constraint firstItem="OJ3-My-vIM" firstAttribute="bottom" secondItem="mRH-B5-NI6" secondAttribute="bottomMargin" id="pAO-Rj-JEX"/>
+                                    <constraint firstItem="g15-id-agf" firstAttribute="trailing" secondItem="OJ3-My-vIM" secondAttribute="trailing" id="z5n-nA-xPu"/>
+                                    <constraint firstItem="OJ3-My-vIM" firstAttribute="top" secondItem="g15-id-agf" secondAttribute="bottom" constant="8" symbolic="YES" id="z9J-w0-8Jm"/>
+                                    <constraint firstItem="OJ3-My-vIM" firstAttribute="leading" secondItem="mRH-B5-NI6" secondAttribute="leadingMargin" id="zoC-rW-UNp"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="image" destination="g15-id-agf" id="Hd6-ak-Hx1"/>
+                                    <outlet property="label" destination="OJ3-My-vIM" id="DoA-cE-uf2"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

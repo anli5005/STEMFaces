@@ -49,6 +49,7 @@ class DetailViewController: UICollectionViewController {
             setLoaded = true
             
             navigationItem.title = detail
+            collectionView.reloadData()
         }
     }
     
@@ -83,6 +84,8 @@ class DetailViewController: UICollectionViewController {
             face["about"] = ""
             // Add face to face array
             faces.append(face)
+            // Reload collection view
+            collectionView.reloadData()
             /* An automatic segue to face editing scene will be implemented soon.
                For now, the user can tap to edit the new face.
             */
@@ -97,6 +100,25 @@ class DetailViewController: UICollectionViewController {
             if let e = error { println("Error making data: \(e.localizedDescription)") }
             data?.writeToFile(docPath.stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), atomically: true)
         }
+    }
+    
+    // MARK: Collection View Controller
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return faces.count
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Face Card", forIndexPath: indexPath) as FaceCardCollectionViewCell
+        
+        // Configure the cell with the face details.
+        let face = faces[indexPath.row]
+        cell.label!.text = (face["name"] as String)
+       
+        return cell
     }
     
 }
