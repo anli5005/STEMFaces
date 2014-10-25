@@ -31,7 +31,12 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         var error: NSError?
-        objects = NSFileManager.defaultManager().contentsOfDirectoryAtPath(docPath, error: &error) as [String]
+        let fileList = NSFileManager.defaultManager().contentsOfDirectoryAtPath(docPath, error: &error) as [String]
+        for file in fileList {
+            if !file.hasPrefix(".") {
+                objects.append(file)
+            }
+        }
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
@@ -99,11 +104,7 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = objects.count
-        if NSFileManager.defaultManager().fileExistsAtPath(docPath.stringByAppendingPathComponent(".DS_Store")) {
-            return count - 1
-        }
-        return count
+        return objects.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
