@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UICollectionViewController {
     
     var faces = [[String: AnyObject]]()
     private var setLoaded = false
