@@ -82,7 +82,6 @@ class DetailViewController: UICollectionViewController {
             }
             // Set default face details
             face["name"] = "Person"
-            face["gender"] = ""
             face["about"] = ""
             // Add face to face array
             faces.append(face)
@@ -98,7 +97,7 @@ class DetailViewController: UICollectionViewController {
         super.viewWillDisappear(animated)
         if let detail = detailItem as? String {
             var error: NSError?
-            var data = NSJSONSerialization.dataWithJSONObject(faces, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
+            var data = NSJSONSerialization.dataWithJSONObject(faces, options: .PrettyPrinted, error: &error)
             if let e = error { println("Error making data: \(e.localizedDescription)") }
             data?.writeToFile(docPath.stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), atomically: true)
         }
@@ -121,7 +120,7 @@ class DetailViewController: UICollectionViewController {
         
         // Configure the cell with the face details.
         let face = faces[indexPath.row]
-        cell.label!.text = (face["name"] as String)
+        cell.label?.text = (face["name"] as String)
        
         return cell
     }

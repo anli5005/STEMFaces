@@ -15,6 +15,7 @@
 		4A2779F319F494D500E6BEE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2779F119F494D500E6BEE8 /* LaunchScreen.xib */; };
 		4A2779FF19F494D500E6BEE8 /* FacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779FE19F494D500E6BEE8 /* FacesTests.swift */; };
 		4A820E1C19FC146600B77B82 /* FaceCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */; };
+		4AACA9CD19FC8F3200880E86 /* FaceCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		4A2779FD19F494D500E6BEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A2779FE19F494D500E6BEE8 /* FacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacesTests.swift; sourceTree = "<group>"; };
 		4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceCardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				4A2779E619F494D500E6BEE8 /* AppDelegate.swift */,
 				4A2779E819F494D500E6BEE8 /* MasterViewController.swift */,
 				4A2779EA19F494D500E6BEE8 /* DetailViewController.swift */,
+				4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */,
 				4A2779EC19F494D500E6BEE8 /* Main.storyboard */,
 				4A2779EF19F494D500E6BEE8 /* Images.xcassets */,
 				4A2779F119F494D500E6BEE8 /* LaunchScreen.xib */,
@@ -222,6 +225,7 @@
 				4A2779E919F494D500E6BEE8 /* MasterViewController.swift in Sources */,
 				4A820E1C19FC146600B77B82 /* FaceCardCollectionViewCell.swift in Sources */,
 				4A2779E719F494D500E6BEE8 /* AppDelegate.swift in Sources */,
+				4AACA9CD19FC8F3200880E86 /* FaceCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
