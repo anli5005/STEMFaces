@@ -109,7 +109,7 @@ class DetailViewController: UICollectionViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         if (segue.identifier ?? "") == "showCard" {
-            let dest = segue.destinationViewController as FaceCardViewController
+            let dest = (segue.destinationViewController as UINavigationController).topViewController as FaceCardViewController
             dest.parentController = self
             dest.detailItem = (sender as NSIndexPath).row
         }

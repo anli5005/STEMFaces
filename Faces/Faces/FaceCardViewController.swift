@@ -11,7 +11,16 @@ import UIKit
 class FaceCardViewController: UICollectionViewController {
     
     weak var parentController: DetailViewController!
-    var detailItem: Int?
+    var detailItem: Int? {
+        didSet {
+            configureView()
+        }
+    }
+    
+    var editMode = false
+    
+    weak var nameField: UITextField!
+    weak var aboutField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +28,31 @@ class FaceCardViewController: UICollectionViewController {
         navigationController?.navigationBarHidden = false
         navigationItem.title = "Name"
         
+        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "toggleEditMode")
+        self.navigationItem.rightBarButtonItem = editButton
+        
+        configureView()
+        
         collectionView.reloadData()
+    }
+    
+    func configureView() {
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func toggleEditMode() {
+        editMode = !editMode
+        for textField in [nameField, aboutField] {
+            textField.enabled = editMode
+            textField.borderStyle = editMode ? .RoundedRect : .None
+        }
+        let editButton = UIBarButtonItem(barButtonSystemItem: (editMode ? .Done : .Edit), target: self, action: "toggleEditMode")
+        navigationItem.rightBarButtonItem = editButton
     }
     
     // MARK: UICollectionViewDataSource
@@ -48,7 +76,19 @@ class FaceCardViewController: UICollectionViewController {
         viewForSupplementaryElementOfKind kind: String,
         atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
             if kind == UICollectionElementKindSectionHeader {
-                let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Face Header", forIndexPath:indexPath) as UICollectionReusableView
+                let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Face Header", forIndexPath:indexPath) as HeaderCollectionReusableView
+                nameField = view.nameField
+                aboutField = view.aboutField
+                if let detail = detailItem {
+                    let face = parentController.faces[detail]
+                    let name = (face["name"] as String)
+                    let about = (face["about"] as String)
+                    
+                    nameField.text = name
+                    aboutField.text = about
+                }
+                nameField.enabled = editMode
+                aboutField.enabled = editMode
                 return view
             } else {
                 let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Button Cell", forIndexPath:indexPath) as ButtonCollectionReusableView
