@@ -142,7 +142,6 @@
                                 <connections>
                                     <outlet property="image" destination="g15-id-agf" id="Hd6-ak-Hx1"/>
                                     <outlet property="label" destination="OJ3-My-vIM" id="DoA-cE-uf2"/>
-                                    <segue destination="3gF-5j-fP1" kind="showDetail" id="QC8-5q-j0s"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -152,6 +151,10 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Faces Set" id="fIO-9K-MoX"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="3gF-5j-fP1" kind="showDetail" identifier="showCard" id="tqX-UA-VgU"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6by-05-BVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,21 +170,100 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GLh-gO-H3S">
                             <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="116"/>
+                            <size key="footerReferenceSize" width="50" height="50"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="10e-CT-Bmq">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Face Image" id="PAL-Vg-8UV" customClass="FaceImageCollectionViewCell" customModule="Faces" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="121" height="164"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6ZT-3Q-ae6">
+                                            <rect key="frame" x="0.0" y="0.0" width="121" height="164"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="6ZT-3Q-ae6" secondAttribute="bottom" id="HRw-oe-vaI"/>
+                                    <constraint firstItem="6ZT-3Q-ae6" firstAttribute="leading" secondItem="PAL-Vg-8UV" secondAttribute="leading" id="bnn-9K-eDc"/>
+                                    <constraint firstAttribute="trailing" secondItem="6ZT-3Q-ae6" secondAttribute="trailing" id="dn5-q9-h5h"/>
+                                    <constraint firstItem="6ZT-3Q-ae6" firstAttribute="top" secondItem="PAL-Vg-8UV" secondAttribute="top" id="tib-1f-jRF"/>
+                                </constraints>
+                                <size key="customSize" width="121" height="164"/>
+                                <connections>
+                                    <outlet property="image" destination="6ZT-3Q-ae6" id="Q4B-mG-GrO"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Face Header" id="MWy-Pc-Squ" customClass="HeaderCollectionReusableView" customModule="Faces" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="64" width="600" height="116"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LpP-GD-Lig">
+                                    <rect key="frame" x="8" y="8" width="584" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="ZoF-GR-87j"/>
+                                        <constraint firstAttribute="height" constant="19" id="uJa-DD-9gE"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="uJa-DD-9gE"/>
+                                        </mask>
+                                    </variation>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="About" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JVL-Sn-Yht">
+                                    <rect key="frame" x="8" y="46" width="584" height="62"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="JVL-Sn-Yht" firstAttribute="bottom" secondItem="MWy-Pc-Squ" secondAttribute="bottomMargin" id="2WS-IK-b25"/>
+                                <constraint firstItem="LpP-GD-Lig" firstAttribute="leading" secondItem="MWy-Pc-Squ" secondAttribute="leadingMargin" id="Dt3-H2-vAl"/>
+                                <constraint firstItem="LpP-GD-Lig" firstAttribute="trailing" secondItem="MWy-Pc-Squ" secondAttribute="trailingMargin" id="KPG-mP-IhS"/>
+                                <constraint firstItem="LpP-GD-Lig" firstAttribute="leading" secondItem="JVL-Sn-Yht" secondAttribute="leading" id="Kab-a0-xRQ"/>
+                                <constraint firstItem="JVL-Sn-Yht" firstAttribute="top" secondItem="LpP-GD-Lig" secondAttribute="bottom" constant="8" symbolic="YES" id="UgE-M5-6GF"/>
+                                <constraint firstItem="LpP-GD-Lig" firstAttribute="trailing" secondItem="JVL-Sn-Yht" secondAttribute="trailing" id="be2-0S-8z6"/>
+                                <constraint firstItem="JVL-Sn-Yht" firstAttribute="top" secondItem="LpP-GD-Lig" secondAttribute="bottom" constant="2" id="cDs-MD-e3V"/>
+                                <constraint firstItem="LpP-GD-Lig" firstAttribute="top" secondItem="MWy-Pc-Squ" secondAttribute="topMargin" id="cXf-fB-Oar"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="cDs-MD-e3V"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <outlet property="aboutField" destination="JVL-Sn-Yht" id="I2z-o8-u76"/>
+                                <outlet property="nameField" destination="LpP-GD-Lig" id="MWL-lB-o5F"/>
+                            </connections>
+                        </collectionReusableView>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Button Cell" id="8CM-br-mPM" customClass="ButtonCollectionReusableView" customModule="Faces" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="278" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFA-h9-bMJ">
+                                    <rect key="frame" x="0.0" y="10" width="600" height="30"/>
+                                    <state key="normal" title="Button">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="rFA-h9-bMJ" secondAttribute="trailing" id="8dr-rY-ZVO"/>
+                                <constraint firstItem="rFA-h9-bMJ" firstAttribute="centerY" secondItem="8CM-br-mPM" secondAttribute="centerY" id="j33-CV-1LG"/>
+                                <constraint firstItem="rFA-h9-bMJ" firstAttribute="leading" secondItem="8CM-br-mPM" secondAttribute="leading" id="vW7-9o-oVl"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="button" destination="rFA-h9-bMJ" id="RoJ-9E-eX7"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="3gF-5j-fP1" id="3lO-jv-Och"/>
                             <outlet property="delegate" destination="3gF-5j-fP1" id="J2g-32-QhK"/>
@@ -191,7 +273,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIL-uJ-nzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1409" y="129"/>
+            <point key="canvasLocation" x="1407" y="186"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

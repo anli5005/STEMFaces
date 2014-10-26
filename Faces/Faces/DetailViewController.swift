@@ -106,6 +106,15 @@ class DetailViewController: UICollectionViewController {
         navigationController?.toolbarHidden = true
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if (segue.identifier ?? "") == "showCard" {
+            let dest = segue.destinationViewController as FaceCardViewController
+            dest.parentController = self
+            dest.detailItem = (sender as NSIndexPath).row
+        }
+    }
+    
     // MARK: Collection View Controller
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -123,6 +132,15 @@ class DetailViewController: UICollectionViewController {
         cell.label?.text = (face["name"] as String)
        
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        // Perform the segue
+        performSegueWithIdentifier("showCard", sender: indexPath)
     }
     
 }

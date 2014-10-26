@@ -16,6 +16,9 @@
 		4A2779FF19F494D500E6BEE8 /* FacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779FE19F494D500E6BEE8 /* FacesTests.swift */; };
 		4A820E1C19FC146600B77B82 /* FaceCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */; };
 		4AACA9CD19FC8F3200880E86 /* FaceCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */; };
+		4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */; };
+		4AD568AB19FD363300EA2234 /* ButtonCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */; };
+		4AD568AD19FD363F00EA2234 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,9 @@
 		4A2779FE19F494D500E6BEE8 /* FacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacesTests.swift; sourceTree = "<group>"; };
 		4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceCardViewController.swift; sourceTree = "<group>"; };
+		4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCollectionReusableView.swift; sourceTree = "<group>"; };
+		4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,9 @@
 				4A2779EF19F494D500E6BEE8 /* Images.xcassets */,
 				4A2779F119F494D500E6BEE8 /* LaunchScreen.xib */,
 				4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */,
+				4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */,
+				4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */,
+				4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */,
 				4A2779E419F494D500E6BEE8 /* Supporting Files */,
 			);
 			path = Faces;
@@ -221,9 +230,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AD568AD19FD363F00EA2234 /* HeaderCollectionReusableView.swift in Sources */,
 				4A2779EB19F494D500E6BEE8 /* DetailViewController.swift in Sources */,
 				4A2779E919F494D500E6BEE8 /* MasterViewController.swift in Sources */,
 				4A820E1C19FC146600B77B82 /* FaceCardCollectionViewCell.swift in Sources */,
+				4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */,
+				4AD568AB19FD363300EA2234 /* ButtonCollectionReusableView.swift in Sources */,
 				4A2779E719F494D500E6BEE8 /* AppDelegate.swift in Sources */,
 				4AACA9CD19FC8F3200880E86 /* FaceCardViewController.swift in Sources */,
 			);
