@@ -55,6 +55,16 @@ class FaceCardViewController: UICollectionViewController {
         navigationItem.rightBarButtonItem = editButton
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let detail = detailItem {
+            var face = parentController.faces[detail]
+            face["name"] = nameField.text
+            face["about"] = aboutField.text
+            parentController.faces[detail] = face
+        }
+    }
+    
     // MARK: UICollectionViewDataSource
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
