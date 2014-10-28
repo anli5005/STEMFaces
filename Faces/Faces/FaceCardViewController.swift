@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FaceCardViewController: UICollectionViewController {
+class FaceCardViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     weak var parentController: DetailViewController!
     var detailItem: Int? {
@@ -98,9 +98,37 @@ class FaceCardViewController: UICollectionViewController {
             (alertAction: UIAlertAction!) in
             let controller = UIImagePickerController()
             controller.sourceType = .PhotoLibrary
+            controller.delegate = self
             self.presentViewController(controller, animated: true, completion: {})
         }))
         presentViewController(promptControl, animated: true, completion: {})
+    }
+    
+    func imagePickerController(picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+            var image: UIImage
+            if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+                image = editedImage
+            } else {
+                image = (info[UIImagePickerControllerOriginalImage] as UIImage)
+            }
+            var imageName: Int
+            if let lastImage = imageList.last {
+                let lastImageName = lastImage.stringByDeletingPathExtension
+                let lastImageInt = lastImageName.toInt()!
+                imageName = lastImageInt + 1
+            } else {
+                imageName = 0
+            }
+            if let setName = parentController.detailItem as? String {
+                if let detail = detailItem {
+                    let setFolder = docPath.stringByAppendingPathComponent(setName)
+                    let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(parentController.faces[detail]["id"] as Int))
+                    UIImagePNGRepresentation(image).writeToFile(imageFolder.stringByAppendingPathComponent("\(imageName).png"), atomically: true)
+                    imageList.append("\(imageName).png")
+                }
+            }
+            dismissViewControllerAnimated(true, {})
     }
     
     // MARK: UICollectionViewDataSource
