@@ -129,6 +129,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                 }
             }
             dismissViewControllerAnimated(true, {})
+            collectionView.reloadData()
     }
     
     // MARK: UICollectionViewDataSource
@@ -138,14 +139,20 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return parentController.faces.count
+        return imageList.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell: UICollectionViewCell?
-        
-        return (collectionView.dequeueReusableCellWithReuseIdentifier("Face Image", forIndexPath: indexPath) as UICollectionViewCell)
-        
+        let cell = (collectionView.dequeueReusableCellWithReuseIdentifier("Face Image", forIndexPath: indexPath) as FaceImageCollectionViewCell)
+        if let setName = parentController.detailItem as? String {
+            if let detail = detailItem {
+                let setFolder = docPath.stringByAppendingPathComponent(setName)
+                let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(parentController.faces[detail]["id"] as Int))
+                let filename = imageFolder.stringByAppendingPathComponent(imageList[indexPath.item])
+                cell.image.image = UIImage(contentsOfFile: filename)
+            }
+        }
+        return cell
     }
     
     override func collectionView(collectionView: UICollectionView,
