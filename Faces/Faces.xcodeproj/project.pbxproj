@@ -10,10 +10,10 @@
 		4A2779E719F494D500E6BEE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779E619F494D500E6BEE8 /* AppDelegate.swift */; };
 		4A2779E919F494D500E6BEE8 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779E819F494D500E6BEE8 /* MasterViewController.swift */; };
 		4A2779EB19F494D500E6BEE8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779EA19F494D500E6BEE8 /* DetailViewController.swift */; };
-		4A2779EE19F494D500E6BEE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2779EC19F494D500E6BEE8 /* Main.storyboard */; };
 		4A2779F019F494D500E6BEE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A2779EF19F494D500E6BEE8 /* Images.xcassets */; };
 		4A2779F319F494D500E6BEE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2779F119F494D500E6BEE8 /* LaunchScreen.xib */; };
 		4A2779FF19F494D500E6BEE8 /* FacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779FE19F494D500E6BEE8 /* FacesTests.swift */; };
+		4A3BF71B19FDD46A0035C5AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A3BF71919FDD46A0035C5AD /* Main.storyboard */; };
 		4A820E1C19FC146600B77B82 /* FaceCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */; };
 		4AACA9CD19FC8F3200880E86 /* FaceCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */; };
 		4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */; };
@@ -37,12 +37,12 @@
 		4A2779E619F494D500E6BEE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A2779E819F494D500E6BEE8 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		4A2779EA19F494D500E6BEE8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		4A2779ED19F494D500E6BEE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A2779EF19F494D500E6BEE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4A2779F219F494D500E6BEE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4A2779F819F494D500E6BEE8 /* FacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2779FD19F494D500E6BEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A2779FE19F494D500E6BEE8 /* FacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacesTests.swift; sourceTree = "<group>"; };
+		4A3BF71A19FDD46A0035C5AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceCardViewController.swift; sourceTree = "<group>"; };
 		4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 				4A2779E819F494D500E6BEE8 /* MasterViewController.swift */,
 				4A2779EA19F494D500E6BEE8 /* DetailViewController.swift */,
 				4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */,
-				4A2779EC19F494D500E6BEE8 /* Main.storyboard */,
+				4A3BF71919FDD46A0035C5AD /* Main.storyboard */,
 				4A2779EF19F494D500E6BEE8 /* Images.xcassets */,
 				4A2779F119F494D500E6BEE8 /* LaunchScreen.xib */,
 				4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */,
@@ -210,7 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A2779EE19F494D500E6BEE8 /* Main.storyboard in Resources */,
+				4A3BF71B19FDD46A0035C5AD /* Main.storyboard in Resources */,
 				4A2779F319F494D500E6BEE8 /* LaunchScreen.xib in Resources */,
 				4A2779F019F494D500E6BEE8 /* Images.xcassets in Resources */,
 			);
@@ -260,20 +260,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4A2779EC19F494D500E6BEE8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4A2779ED19F494D500E6BEE8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4A2779F119F494D500E6BEE8 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4A2779F219F494D500E6BEE8 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		4A3BF71919FDD46A0035C5AD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4A3BF71A19FDD46A0035C5AD /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

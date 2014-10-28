@@ -187,7 +187,7 @@
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GLh-gO-H3S">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="50" height="116"/>
-                            <size key="footerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="50" height="163"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
@@ -261,23 +261,34 @@
                             </connections>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Button Cell" id="8CM-br-mPM" customClass="ButtonCollectionReusableView" customModule="Faces" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="278" width="600" height="50"/>
+                            <rect key="frame" x="0.0" y="344" width="600" height="163"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFA-h9-bMJ">
-                                    <rect key="frame" x="0.0" y="10" width="600" height="30"/>
-                                    <state key="normal" title="Button">
+                                    <rect key="frame" x="0.0" y="8" width="600" height="30"/>
+                                    <state key="normal" title="Add New Image">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4x4-Fu-dGq">
+                                    <rect key="frame" x="0.0" y="46" width="600" height="30"/>
+                                    <state key="normal" title="Delete Face">
+                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="rFA-h9-bMJ" secondAttribute="trailing" id="8dr-rY-ZVO"/>
-                                <constraint firstItem="rFA-h9-bMJ" firstAttribute="centerY" secondItem="8CM-br-mPM" secondAttribute="centerY" id="j33-CV-1LG"/>
-                                <constraint firstItem="rFA-h9-bMJ" firstAttribute="leading" secondItem="8CM-br-mPM" secondAttribute="leading" id="vW7-9o-oVl"/>
+                                <constraint firstItem="rFA-h9-bMJ" firstAttribute="leading" secondItem="8CM-br-mPM" secondAttribute="leading" id="8D6-gN-cAP"/>
+                                <constraint firstItem="rFA-h9-bMJ" firstAttribute="trailing" secondItem="4x4-Fu-dGq" secondAttribute="trailing" id="GFR-QJ-FCt"/>
+                                <constraint firstItem="rFA-h9-bMJ" firstAttribute="top" secondItem="8CM-br-mPM" secondAttribute="topMargin" id="Kba-ul-06f"/>
+                                <constraint firstAttribute="trailing" secondItem="rFA-h9-bMJ" secondAttribute="trailing" id="KtB-94-Uam"/>
+                                <constraint firstItem="4x4-Fu-dGq" firstAttribute="top" secondItem="rFA-h9-bMJ" secondAttribute="bottom" constant="8" symbolic="YES" id="P2n-Pq-KpB"/>
+                                <constraint firstItem="rFA-h9-bMJ" firstAttribute="leading" secondItem="4x4-Fu-dGq" secondAttribute="leading" id="ooG-eu-Hlo"/>
                             </constraints>
                             <connections>
-                                <outlet property="button" destination="rFA-h9-bMJ" id="RoJ-9E-eX7"/>
+                                <outlet property="addButton" destination="rFA-h9-bMJ" id="TwA-ke-ELc"/>
+                                <outlet property="deleteButton" destination="4x4-Fu-dGq" id="R1D-py-aeM"/>
                             </connections>
                         </collectionReusableView>
                         <connections>

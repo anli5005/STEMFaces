@@ -17,6 +17,8 @@ class FaceCardViewController: UICollectionViewController {
         }
     }
     
+    var imageList = [String]()
+    
     var editMode = false
     
     weak var nameField: UITextField!
@@ -26,18 +28,41 @@ class FaceCardViewController: UICollectionViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBarHidden = false
-        navigationItem.title = "Name"
+        if let detail = detailItem {
+            navigationItem.title = (parentController.faces[detail]["name"] as String)
+        }
         
         let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "toggleEditMode")
         self.navigationItem.rightBarButtonItem = editButton
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         configureView()
-        
         collectionView.reloadData()
     }
     
     func configureView() {
-        
+        if let setName = parentController.detailItem as? String {
+            if let detail = detailItem {
+                let setFolder = docPath.stringByAppendingPathComponent(setName)
+                let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(parentController.faces[detail]["id"] as Int))
+                let fileManager = NSFileManager.defaultManager()
+                if !fileManager.fileExistsAtPath(imageFolder) {
+                    // Make the folder
+                    fileManager.createDirectoryAtPath(imageFolder, withIntermediateDirectories: false, attributes: nil, error: nil)
+                }
+                var items = [String]()
+                for item in (fileManager.contentsOfDirectoryAtPath(imageFolder, error: nil) as [String]) {
+                    if !item.hasPrefix(".") && item.stringByDeletingPathExtension.toInt() != nil {
+                        items.append(item)
+                    }
+                }
+                imageList = sorted(items) { (in1: String, in2: String) in
+                    return in1.stringByDeletingPathExtension.toInt()! < in2.stringByDeletingPathExtension.toInt()!
+                }
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,6 +88,17 @@ class FaceCardViewController: UICollectionViewController {
             face["about"] = aboutField.text
             parentController.faces[detail] = face
         }
+    }
+    
+    func insertNewImage(sender: AnyObject) {
+        // Initialize a UIAlertController
+        let promptControl = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        promptControl.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        promptControl.addAction(UIAlertAction(title: "Browse Photo Library", style: UIAlertActionStyle.Default, handler: {
+            (alertAction: UIAlertAction!) in
+            
+        }))
+        presentViewController(promptControl, animated: true, completion: {})
     }
     
     // MARK: UICollectionViewDataSource
@@ -102,9 +138,14 @@ class FaceCardViewController: UICollectionViewController {
                 return view
             } else {
                 let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Button Cell", forIndexPath:indexPath) as ButtonCollectionReusableView
-                view.button.setTitle("Add New Image", forState: .Normal)
+                view.addButton.addTarget(self, action: "insertNewImage:", forControlEvents: .TouchUpInside)
+                view.deleteButton.addTarget(self, action: "deleteFace:", forControlEvents: .TouchUpInside)
                 return view
             }
+    }
+    
+    func deleteFace(sender: AnyObject) {
+        
     }
     
     // MARK: UICollectionViewDelegate

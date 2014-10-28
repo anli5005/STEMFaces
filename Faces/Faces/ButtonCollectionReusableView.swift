@@ -9,5 +9,6 @@
 import UIKit
 
 class ButtonCollectionReusableView: UICollectionReusableView {
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
 }
