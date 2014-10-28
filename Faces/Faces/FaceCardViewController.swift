@@ -96,7 +96,9 @@ class FaceCardViewController: UICollectionViewController {
         promptControl.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         promptControl.addAction(UIAlertAction(title: "Browse Photo Library", style: UIAlertActionStyle.Default, handler: {
             (alertAction: UIAlertAction!) in
-            
+            let controller = UIImagePickerController()
+            controller.sourceType = .PhotoLibrary
+            self.presentViewController(controller, animated: true, completion: {})
         }))
         presentViewController(promptControl, animated: true, completion: {})
     }
