@@ -86,7 +86,7 @@ class DetailViewController: UICollectionViewController {
             // Reload collection view
             collectionView.reloadData()
             /* An automatic segue to face editing scene will be implemented soon.
-               For now, the user can tap to edit the new face.
+            For now, the user can tap to edit the new face.
             */
         }
     }
@@ -133,7 +133,7 @@ class DetailViewController: UICollectionViewController {
             let imagePath = imageFolder.stringByAppendingPathComponent("0.png")
             cell.image?.image = UIImage(contentsOfFile: imagePath)
         }
-       
+        
         return cell
     }
     
@@ -144,6 +144,13 @@ class DetailViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // Perform the segue
         performSegueWithIdentifier("showCard", sender: indexPath)
+    }
+    
+    override func collectionView(collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Detail Footer", forIndexPath:indexPath) as DetailFooterCollectionReusableView
+            return view
     }
     
 }
