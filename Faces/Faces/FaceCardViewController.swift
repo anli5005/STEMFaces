@@ -149,7 +149,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                 let setFolder = docPath.stringByAppendingPathComponent(setName)
                 let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(parentController.faces[detail]["id"] as Int))
                 let filename = imageFolder.stringByAppendingPathComponent(imageList[indexPath.item])
-                cell.image.image = UIImage(contentsOfFile: filename)
+                cell.image?.image = UIImage(contentsOfFile: filename)
             }
         }
         return cell

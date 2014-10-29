@@ -58,8 +58,6 @@ class DetailViewController: UICollectionViewController {
         // Add Add button
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject")
         self.navigationItem.rightBarButtonItem = addButton
-        // Show toolbar
-        navigationController?.toolbarHidden = false
         // Do any additional setup after loading the view
         self.configureView()
     }
@@ -101,9 +99,6 @@ class DetailViewController: UICollectionViewController {
             if let e = error { println("Error making data: \(e.localizedDescription)") }
             data?.writeToFile(docPath.stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), atomically: true)
         }
-        
-        // Hide toolbar
-        navigationController?.toolbarHidden = true
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -128,8 +123,16 @@ class DetailViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Face Card", forIndexPath: indexPath) as FaceCardCollectionViewCell
         
         // Configure the cell with the face details.
-        let face = faces[indexPath.row]
+        let face = faces[indexPath.item]
         cell.label?.text = (face["name"] as String)
+        
+        // Setup the image
+        if let detail = detailItem as? String {
+            let setFolder = docPath.stringByAppendingPathComponent(detail)
+            let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(face["id"] as Int))
+            let imagePath = imageFolder.stringByAppendingPathComponent("0.png")
+            cell.image?.image = UIImage(contentsOfFile: imagePath)
+        }
        
         return cell
     }
