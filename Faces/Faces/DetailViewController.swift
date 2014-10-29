@@ -85,9 +85,17 @@ class DetailViewController: UICollectionViewController {
             faces.append(face)
             // Reload collection view
             collectionView.reloadData()
-            /* An automatic segue to face editing scene will be implemented soon.
-            For now, the user can tap to edit the new face.
-            */
+            // Perform segue
+            var indexPath: NSIndexPath?
+            for (aKey, aFace) in enumerate(faces) {
+                if aFace["id"] as Int == face["id"] as Int {
+                    indexPath = NSIndexPath(forItem: aKey, inSection: 0)
+                }
+            }
+            if indexPath == nil {
+                indexPath = NSIndexPath(forItem: 0, inSection: 0)
+            }
+            performSegueWithIdentifier("showCard", sender: indexPath!)
         }
     }
     
@@ -106,7 +114,7 @@ class DetailViewController: UICollectionViewController {
         if (segue.identifier ?? "") == "showCard" {
             let dest = (segue.destinationViewController as UINavigationController).topViewController as FaceCardViewController
             dest.parentController = self
-            dest.detailItem = (sender as NSIndexPath).row
+            dest.detailItem = (sender as NSIndexPath).item
         }
     }
     

@@ -289,7 +289,7 @@
                             </connections>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Button Cell" id="8CM-br-mPM" customClass="ButtonCollectionReusableView" customModule="Faces" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="344" width="600" height="163"/>
+                            <rect key="frame" x="0.0" y="344" width="600" height="96"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFA-h9-bMJ">
