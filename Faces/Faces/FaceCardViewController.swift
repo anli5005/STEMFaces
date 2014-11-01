@@ -114,6 +114,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
             controller.delegate = self
             self.presentViewController(controller, animated: true, completion: {})
         }))
+        promptControl.popoverPresentationController?.sourceView = footerView.addButton
         presentViewController(promptControl, animated: true, completion: {})
     }
     
