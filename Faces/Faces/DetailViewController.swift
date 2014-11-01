@@ -19,7 +19,7 @@ class DetailViewController: UICollectionViewController {
             self.configureView()
         }
     }
-    
+        
     func configureView() {
         if let detail = detailItem as? String {
             let fileManager = NSFileManager.defaultManager() // For easy access

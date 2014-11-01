@@ -17,6 +17,8 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         }
     }
     
+    weak var footerView: ButtonCollectionReusableView!
+    
     var imageList = [String]()
     
     var editMode = false
@@ -34,6 +36,13 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         
         let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "toggleEditMode")
         self.navigationItem.rightBarButtonItem = editButton
+        
+        let backButton = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: "goBack:")
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    func goBack(sender: AnyObject) {
+        performSegueWithIdentifier("dismiss", sender: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -78,6 +87,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         }
         let editButton = UIBarButtonItem(barButtonSystemItem: (editMode ? .Done : .Edit), target: self, action: "toggleEditMode")
         navigationItem.rightBarButtonItem = editButton
+        footerView?.hidden = !editMode
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -132,6 +142,16 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
             collectionView.reloadData()
     }
     
+    func deleteFace(sender: AnyObject) {
+        let alertController = UIAlertController(title: "Are you sure?", message: "Do you want to delete this face?", preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        func deleteHandler(action: UIAlertAction!) {
+            navigationController?.popViewControllerAnimated(true)
+        }
+        alertController.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: deleteHandler))
+        presentViewController(alertController, animated: true, completion: {})
+    }
+    
     // MARK: UICollectionViewDataSource
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -167,22 +187,20 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                     let name = (face["name"] as String)
                     let about = (face["about"] as String)
                     
-                    nameField.text = name
+                    nameField.text  = name
                     aboutField.text = about
                 }
-                nameField.enabled = editMode
+                nameField.enabled  = editMode
                 aboutField.enabled = editMode
                 return view
             } else {
                 let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Button Cell", forIndexPath:indexPath) as ButtonCollectionReusableView
                 view.addButton.addTarget(self, action: "insertNewImage:", forControlEvents: .TouchUpInside)
                 view.deleteButton.addTarget(self, action: "deleteFace:", forControlEvents: .TouchUpInside)
+                view.hidden = !editMode
+                footerView = view
                 return view
             }
-    }
-    
-    func deleteFace(sender: AnyObject) {
-        
     }
     
     // MARK: UICollectionViewDelegate
