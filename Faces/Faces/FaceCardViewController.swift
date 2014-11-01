@@ -22,6 +22,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     var imageList = [String]()
     
     var editMode = false
+    var deleted = false
     
     weak var nameField: UITextField!
     weak var aboutField: UITextField!
@@ -93,10 +94,12 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         if let detail = detailItem {
-            var face = parentController.faces[detail]
-            face["name"] = nameField.text
-            face["about"] = aboutField.text
-            parentController.faces[detail] = face
+            if !deleted {
+                var face = parentController.faces[detail]
+                face["name"] = nameField.text
+                face["about"] = aboutField.text
+                parentController.faces[detail] = face
+            }
         }
     }
     
@@ -146,7 +149,19 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         let alertController = UIAlertController(title: "Are you sure?", message: "Do you want to delete this face?", preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         func deleteHandler(action: UIAlertAction!) {
-            navigationController?.popViewControllerAnimated(true)
+            if let detail = detailItem {
+                if let setName = parentController.detailItem as? String {
+                    let setFolder = docPath.stringByAppendingPathComponent(setName)
+                    let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(parentController.faces[detail]["id"] as Int))
+                    NSFileManager.defaultManager().removeItemAtPath(imageFolder, error: nil)
+                    // Delete the images
+                }
+                // Delete the face object
+                parentController.faces.removeAtIndex(detail)
+                deleted = true
+                // Dismiss controller
+                performSegueWithIdentifier("dismiss", sender: nil)
+            }
         }
         alertController.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: deleteHandler))
         presentViewController(alertController, animated: true, completion: {})

@@ -118,6 +118,11 @@ class DetailViewController: UICollectionViewController {
         }
     }
     
+    override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
+        super.dismissViewControllerAnimated(flag, completion: completion)
+        collectionView.reloadData()
+    }
+    
     // MARK: Collection View Controller
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
