@@ -27,6 +27,10 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     weak var nameField: UITextField!
     weak var aboutField: UITextField!
     
+    func dismiss() {
+        presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +47,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     }
     
     func goBack(sender: AnyObject) {
-        performSegueWithIdentifier("dismiss", sender: nil)
+        dismiss()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -100,6 +104,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                 face["about"] = aboutField.text
                 parentController.faces[detail] = face
             }
+            parentController?.collectionView.reloadData()
         }
     }
     
@@ -161,7 +166,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                 parentController.faces.removeAtIndex(detail)
                 deleted = true
                 // Dismiss controller
-                performSegueWithIdentifier("dismiss", sender: nil)
+                dismiss()
             }
         }
         alertController.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: deleteHandler))
@@ -228,12 +233,16 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     }
     */
     
-    /*
-    // Uncomment this method to specify if the specified item should be selected
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return true
+        return true
     }
-    */
+    
+    override func collectionView(collectionView: UICollectionView,
+        didSelectItemAtIndexPath indexPath: NSIndexPath) {
+            if editMode {
+                // Show delete menu
+            }
+    }
     
     /*
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item

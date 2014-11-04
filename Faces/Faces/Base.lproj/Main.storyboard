@@ -326,9 +326,6 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="MFl-Vj-vsg"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <segue destination="fcT-JO-BwD" kind="custom" identifier="dismiss" customClass="DismissSegue" customModule="Faces" id="yXV-yc-SRc"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIL-uJ-nzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -337,6 +334,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
-        <segue reference="yXV-yc-SRc"/>
     </inferredMetricsTieBreakers>
 </document>
