@@ -21,7 +21,6 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     
     var imageList = [String]()
     
-    var editMode = false
     var deleted = false
     
     weak var nameField: UITextField!
@@ -39,8 +38,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
             navigationItem.title = (parentController.faces[detail]["name"] as String)
         }
         
-        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "toggleEditMode")
-        self.navigationItem.rightBarButtonItem = editButton
+        self.navigationItem.rightBarButtonItem = editButtonItem()
         
         let backButton = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: "goBack:")
         self.navigationItem.leftBarButtonItem = backButton
@@ -84,15 +82,13 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         // Dispose of any resources that can be recreated.
     }
     
-    func toggleEditMode() {
-        editMode = !editMode
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
         for textField in [nameField, aboutField] {
-            textField.enabled = editMode
-            textField.borderStyle = editMode ? .RoundedRect : .None
+            textField.enabled = editing
+            textField.borderStyle = editing ? .RoundedRect : .None
         }
-        let editButton = UIBarButtonItem(barButtonSystemItem: (editMode ? .Done : .Edit), target: self, action: "toggleEditMode")
-        navigationItem.rightBarButtonItem = editButton
-        footerView?.hidden = !editMode
+        footerView?.hidden = !editing
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -211,14 +207,14 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                     nameField.text  = name
                     aboutField.text = about
                 }
-                nameField.enabled  = editMode
-                aboutField.enabled = editMode
+                nameField.enabled  = editing
+                aboutField.enabled = editing
                 return view
             } else {
                 let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Button Cell", forIndexPath:indexPath) as ButtonCollectionReusableView
                 view.addButton.addTarget(self, action: "insertNewImage:", forControlEvents: .TouchUpInside)
                 view.deleteButton.addTarget(self, action: "deleteFace:", forControlEvents: .TouchUpInside)
-                view.hidden = !editMode
+                view.hidden = !editing
                 footerView = view
                 return view
             }
@@ -239,8 +235,24 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     
     override func collectionView(collectionView: UICollectionView,
         didSelectItemAtIndexPath indexPath: NSIndexPath) {
-            if editMode {
+            if editing {
                 // Show delete menu
+                let alertController = UIAlertController(title: "Actions", message: nil, preferredStyle: .ActionSheet)
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                func deleteHandler(action: UIAlertAction!) {
+                    if let detail = detailItem {
+                        if let setName = parentController.detailItem as? String {
+                            let setFolder = docPath.stringByAppendingPathComponent(setName)
+                            let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(parentController.faces[detail]["id"] as Int))
+                            NSFileManager.defaultManager().removeItemAtPath(imageFolder.stringByAppendingPathComponent(imageList[indexPath.item]), error: nil)
+                            // Delete the image
+                        }
+                    }
+                    collectionView.reloadData()
+                }
+                alertController.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: deleteHandler))
+                alertController.popoverPresentationController?.sourceView = collectionView.cellForItemAtIndexPath(indexPath)!
+                presentViewController(alertController, animated: true, completion: {})
             }
     }
     
