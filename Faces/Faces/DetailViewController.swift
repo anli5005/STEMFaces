@@ -101,12 +101,7 @@ class DetailViewController: UICollectionViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        if let detail = detailItem as? String {
-            var error: NSError?
-            var data = NSJSONSerialization.dataWithJSONObject(faces, options: .PrettyPrinted, error: &error)
-            if let e = error { println("Error making data: \(e.localizedDescription)") }
-            data?.writeToFile(docPath.stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), atomically: true)
-        }
+        saveSet()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -121,6 +116,18 @@ class DetailViewController: UICollectionViewController {
     override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
         super.dismissViewControllerAnimated(flag, completion: completion)
         collectionView.reloadData()
+    }
+    
+    func saveSet() -> NSError? {
+        if let detail = detailItem as? String {
+            var error: NSError?
+            var data = NSJSONSerialization.dataWithJSONObject(faces, options: .PrettyPrinted, error: &error)
+            if let e = error { println("Error making data: \(e.localizedDescription)") }
+            data?.writeToFile(docPath.stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), atomically: true)
+            return error
+        } else {
+            return nil
+        }
     }
     
     // MARK: Collection View Controller
