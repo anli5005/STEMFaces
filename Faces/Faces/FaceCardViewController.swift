@@ -236,7 +236,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     override func collectionView(collectionView: UICollectionView,
         didSelectItemAtIndexPath indexPath: NSIndexPath) {
             if editing {
-                // Show delete menu
+                // Show actions menu
                 let alertController = UIAlertController(title: "Actions", message: nil, preferredStyle: .ActionSheet)
                 alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
                 func deleteHandler(action: UIAlertAction!) {

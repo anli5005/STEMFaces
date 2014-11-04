@@ -150,10 +150,23 @@ class DetailViewController: UICollectionViewController {
         if let detail = detailItem as? String {
             let setFolder = docPath.stringByAppendingPathComponent(detail)
             let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(face["id"] as Int))
-            let imagePath = imageFolder.stringByAppendingPathComponent("0.png")
-            cell.image?.image = UIImage(contentsOfFile: imagePath)
+            let fileManager = NSFileManager.defaultManager()
+            if fileManager.fileExistsAtPath(imageFolder) {
+                var items = [String]()
+                for item in (fileManager.contentsOfDirectoryAtPath(imageFolder, error: nil) as [String]) {
+                    if !item.hasPrefix(".") && item.stringByDeletingPathExtension.toInt() != nil {
+                        items.append(item)
+                    }
+                }
+                if !items.isEmpty {
+                    let imageList = sorted(items) { (in1: String, in2: String) in
+                        return in1.stringByDeletingPathExtension.toInt()! < in2.stringByDeletingPathExtension.toInt()!
+                    }
+                    let imagePath = imageFolder.stringByAppendingPathComponent(imageList[0])
+                    cell.image?.image = UIImage(contentsOfFile: imagePath)
+                }
+            }
         }
-        
         return cell
     }
     
