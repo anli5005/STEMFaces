@@ -19,7 +19,7 @@ class DetailViewController: UICollectionViewController {
             self.configureView()
         }
     }
-        
+    
     func configureView() {
         if let detail = detailItem as? String {
             let fileManager = NSFileManager.defaultManager() // For easy access
@@ -96,6 +96,7 @@ class DetailViewController: UICollectionViewController {
                 indexPath = NSIndexPath(forItem: 0, inSection: 0)
             }
             performSegueWithIdentifier("showCard", sender: indexPath!)
+            saveSet()
         }
     }
     
@@ -133,41 +134,55 @@ class DetailViewController: UICollectionViewController {
     // MARK: Collection View Controller
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return faces.count
+        if section == 0 {
+            return activities.count
+        } else {
+            return faces.count
+        }
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Face Card", forIndexPath: indexPath) as FaceCardCollectionViewCell
-        
-        // Configure the cell with the face details.
-        let face = faces[indexPath.item]
-        cell.label?.text = (face["name"] as String)
-        
-        // Setup the image
-        if let detail = detailItem as? String {
-            let setFolder = docPath.stringByAppendingPathComponent(detail)
-            let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(face["id"] as Int))
-            let fileManager = NSFileManager.defaultManager()
-            if fileManager.fileExistsAtPath(imageFolder) {
-                var items = [String]()
-                for item in (fileManager.contentsOfDirectoryAtPath(imageFolder, error: nil) as [String]) {
-                    if !item.hasPrefix(".") && item.stringByDeletingPathExtension.toInt() != nil {
-                        items.append(item)
+        var aCell: UICollectionViewCell
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Activity", forIndexPath: indexPath) as ActivityCollectionViewCell
+            aCell = cell
+        } else {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Face Card", forIndexPath: indexPath) as FaceCardCollectionViewCell
+            
+            // Configure the cell with the face details.
+            let face = faces[indexPath.item]
+            cell.label?.text = (face["name"] as String)
+            
+            // Reset the image
+            cell.image?.image = nil
+            
+            // Setup the image
+            if let detail = detailItem as? String {
+                let setFolder = docPath.stringByAppendingPathComponent(detail)
+                let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(face["id"] as Int))
+                let fileManager = NSFileManager.defaultManager()
+                if fileManager.fileExistsAtPath(imageFolder) {
+                    var items = [String]()
+                    for item in (fileManager.contentsOfDirectoryAtPath(imageFolder, error: nil) as [String]) {
+                        if !item.hasPrefix(".") && item.stringByDeletingPathExtension.toInt() != nil {
+                            items.append(item)
+                        }
                     }
-                }
-                if !items.isEmpty {
-                    let imageList = sorted(items) { (in1: String, in2: String) in
-                        return in1.stringByDeletingPathExtension.toInt()! < in2.stringByDeletingPathExtension.toInt()!
+                    if !items.isEmpty {
+                        let imageList = sorted(items) { (in1: String, in2: String) in
+                            return in1.stringByDeletingPathExtension.toInt()! < in2.stringByDeletingPathExtension.toInt()!
+                        }
+                        let imagePath = imageFolder.stringByAppendingPathComponent(imageList[0])
+                        cell.image?.image = UIImage(contentsOfFile: imagePath)
                     }
-                    let imagePath = imageFolder.stringByAppendingPathComponent(imageList[0])
-                    cell.image?.image = UIImage(contentsOfFile: imagePath)
                 }
             }
+            aCell = cell
         }
-        return cell
+        return aCell
     }
     
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -175,16 +190,12 @@ class DetailViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // Perform the segue
-        performSegueWithIdentifier("showCard", sender: indexPath)
+        if indexPath.section == 0 {
+            
+        } else {
+            // Perform the segue
+            performSegueWithIdentifier("showCard", sender: indexPath)
+        }
     }
-    
-    override func collectionView(collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Detail Footer", forIndexPath:indexPath) as DetailFooterCollectionReusableView
-            return view
-    }
-    
 }
 
