@@ -196,11 +196,38 @@
                     <navigationItem key="navigationItem" id="fIO-9K-MoX"/>
                     <connections>
                         <segue destination="5Cg-df-Iyg" kind="presentation" identifier="showCard" modalPresentationStyle="pageSheet" id="hje-Lc-Xpm"/>
+                        <segue destination="Tna-PE-i6Y" kind="presentation" identifier="activity-quiz" modalPresentationStyle="currentContext" id="U7n-d5-Vao"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6by-05-BVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="675" y="129"/>
+        </scene>
+        <!--Quiz-->
+        <scene sceneID="nYz-Na-ITI">
+            <objects>
+                <viewController id="max-l3-y8R" customClass="QuizController" customModule="Faces" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sye-tM-Yz5"/>
+                        <viewControllerLayoutGuide type="bottom" id="bnp-jF-aFS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AUB-s8-a4Z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Quiz" id="KbC-My-Gl1">
+                        <barButtonItem key="leftBarButtonItem" title="Quit" id="aa2-CN-vbV">
+                            <connections>
+                                <action selector="dismiss" destination="max-l3-y8R" id="TmW-Br-80U"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Hint" id="dqT-Xu-psW"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zaR-4X-290" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1454" y="1541"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Y1v-DF-CFT">
@@ -344,6 +371,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIL-uJ-nzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1951" y="129"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zSr-j2-y6Y">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Tna-PE-i6Y" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dOE-nL-Bpn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="max-l3-y8R" kind="relationship" relationship="rootViewController" id="QY6-kC-3nU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x8g-sU-pjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1224" y="838"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

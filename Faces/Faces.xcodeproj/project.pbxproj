@@ -22,6 +22,7 @@
 		4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */; };
 		4AD568AB19FD363300EA2234 /* ButtonCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */; };
 		4AD568AD19FD363F00EA2234 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */; };
+		4ADD5C981A0BEA03004C3332 /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADD5C971A0BEA03004C3332 /* QuizController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCollectionReusableView.swift; sourceTree = "<group>"; };
 		4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		4ADD5C971A0BEA03004C3332 /* QuizController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		4A2779E319F494D500E6BEE8 /* Faces */ = {
 			isa = PBXGroup;
 			children = (
+				4ADD5C961A0BE9E4004C3332 /* Activities */,
 				4A2779E619F494D500E6BEE8 /* AppDelegate.swift */,
 				4A2779E819F494D500E6BEE8 /* MasterViewController.swift */,
 				4A2779EA19F494D500E6BEE8 /* DetailViewController.swift */,
@@ -155,6 +158,14 @@
 				4A9A684C1A0AE0C500D89597 /* ActivityCollectionViewCell.swift */,
 			);
 			name = "Collection View Stuff";
+			sourceTree = "<group>";
+		};
+		4ADD5C961A0BE9E4004C3332 /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+				4ADD5C971A0BEA03004C3332 /* QuizController.swift */,
+			);
+			name = Activities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +276,7 @@
 				4AA23CE81A0084090073739D /* DetailFooterCollectionReusableView.swift in Sources */,
 				4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */,
 				4AD568AB19FD363300EA2234 /* ButtonCollectionReusableView.swift in Sources */,
+				4ADD5C981A0BEA03004C3332 /* QuizController.swift in Sources */,
 				4A2779E719F494D500E6BEE8 /* AppDelegate.swift in Sources */,
 				4AACA9CD19FC8F3200880E86 /* FaceCardViewController.swift in Sources */,
 				4A9A68501A0AE1B700D89597 /* ActivityDefinitions.swift in Sources */,

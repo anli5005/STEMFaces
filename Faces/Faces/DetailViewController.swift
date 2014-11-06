@@ -148,6 +148,9 @@ class DetailViewController: UICollectionViewController {
         var aCell: UICollectionViewCell
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Activity", forIndexPath: indexPath) as ActivityCollectionViewCell
+            let activity = activities[indexPath.item]
+            cell.nameLabel.text   = activity["Name"]
+            cell.detailLabel.text = activity["Detail"]
             aCell = cell
         } else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Face Card", forIndexPath: indexPath) as FaceCardCollectionViewCell
@@ -191,7 +194,7 @@ class DetailViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
-            
+            performSegueWithIdentifier(activities[indexPath.item]["Segue-ID"], sender: indexPath)
         } else {
             // Perform the segue
             performSegueWithIdentifier("showCard", sender: indexPath)
