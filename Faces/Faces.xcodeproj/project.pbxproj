@@ -17,6 +17,7 @@
 		4A820E1C19FC146600B77B82 /* FaceCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */; };
 		4A9A684D1A0AE0C500D89597 /* ActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A684C1A0AE0C500D89597 /* ActivityCollectionViewCell.swift */; };
 		4A9A68501A0AE1B700D89597 /* ActivityDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A684F1A0AE1B700D89597 /* ActivityDefinitions.swift */; };
+		4A9A68571A0AF10B00D89597 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A68561A0AF10A00D89597 /* README.md */; };
 		4AA23CE81A0084090073739D /* DetailFooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA23CE71A0084090073739D /* DetailFooterCollectionReusableView.swift */; };
 		4AACA9CD19FC8F3200880E86 /* FaceCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */; };
 		4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */; };
@@ -49,6 +50,7 @@
 		4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A9A684C1A0AE0C500D89597 /* ActivityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A9A684F1A0AE1B700D89597 /* ActivityDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDefinitions.swift; sourceTree = "<group>"; };
+		4A9A68561A0AF10A00D89597 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		4AA23CE71A0084090073739D /* DetailFooterCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceCardViewController.swift; sourceTree = "<group>"; };
 		4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		4A2779E319F494D500E6BEE8 /* Faces */ = {
 			isa = PBXGroup;
 			children = (
+				4A9A68561A0AF10A00D89597 /* README.md */,
 				4A2779E619F494D500E6BEE8 /* AppDelegate.swift */,
 				4A2779E819F494D500E6BEE8 /* MasterViewController.swift */,
 				4A2779EA19F494D500E6BEE8 /* DetailViewController.swift */,
@@ -261,6 +264,7 @@
 				4A2779E919F494D500E6BEE8 /* MasterViewController.swift in Sources */,
 				4A820E1C19FC146600B77B82 /* FaceCardCollectionViewCell.swift in Sources */,
 				4AA23CE81A0084090073739D /* DetailFooterCollectionReusableView.swift in Sources */,
+				4A9A68571A0AF10B00D89597 /* README.md in Sources */,
 				4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */,
 				4AD568AB19FD363300EA2234 /* ButtonCollectionReusableView.swift in Sources */,
 				4A2779E719F494D500E6BEE8 /* AppDelegate.swift in Sources */,

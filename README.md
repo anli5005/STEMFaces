@@ -1,4 +1,4 @@
-STEMFaces
+Faces (a.k.a STEMFaces)
 =========
 
-The up-to-date version of our FLL Project in 2014.
+This is the STEM Club Team Two's 2014 project app that focuses on helping people learn names and faces.
