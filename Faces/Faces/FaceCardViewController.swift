@@ -35,7 +35,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         
         navigationController?.navigationBarHidden = false
         if let detail = detailItem {
-            navigationItem.title = (parentController.faces[detail]["name"] as String)
+            navigationItem.title = (faces[detail]["name"] as String)
         }
         
         self.navigationItem.rightBarButtonItem = editButtonItem()
@@ -58,7 +58,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         if let setName = parentController.detailItem as? String {
             if let detail = detailItem {
                 let setFolder = docPath.stringByAppendingPathComponent(setName)
-                let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(parentController.faces[detail]["id"] as Int))
+                let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                 let fileManager = NSFileManager.defaultManager()
                 if !fileManager.fileExistsAtPath(imageFolder) {
                     // Make the folder
@@ -95,10 +95,10 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         super.viewWillDisappear(animated)
         if let detail = detailItem {
             if !deleted {
-                var face = parentController.faces[detail]
+                var face = faces[detail]
                 face["name"] = nameField.text
                 face["about"] = aboutField.text
-                parentController.faces[detail] = face
+                faces[detail] = face
             }
             parentController?.collectionView.reloadData()
         }
@@ -138,7 +138,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
             if let setName = parentController.detailItem as? String {
                 if let detail = detailItem {
                     let setFolder = docPath.stringByAppendingPathComponent(setName)
-                    let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(parentController.faces[detail]["id"] as Int))
+                    let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                     UIImagePNGRepresentation(image).writeToFile(imageFolder.stringByAppendingPathComponent("\(imageName).png"), atomically: true)
                     imageList.append("\(imageName).png")
                 }
@@ -154,12 +154,12 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
             if let detail = detailItem {
                 if let setName = parentController.detailItem as? String {
                     let setFolder = docPath.stringByAppendingPathComponent(setName)
-                    let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(parentController.faces[detail]["id"] as Int))
+                    let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                     NSFileManager.defaultManager().removeItemAtPath(imageFolder, error: nil)
                     // Delete the images
                 }
                 // Delete the face object
-                parentController.faces.removeAtIndex(detail)
+                faces.removeAtIndex(detail)
                 deleted = true
                 // Dismiss controller
                 dismiss()
@@ -184,7 +184,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         if let setName = parentController.detailItem as? String {
             if let detail = detailItem {
                 let setFolder = docPath.stringByAppendingPathComponent(setName)
-                let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(parentController.faces[detail]["id"] as Int))
+                let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                 let filename = imageFolder.stringByAppendingPathComponent(imageList[indexPath.item])
                 cell.image?.image = UIImage(contentsOfFile: filename)
             }
@@ -200,7 +200,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                 nameField = view.nameField
                 aboutField = view.aboutField
                 if let detail = detailItem {
-                    let face = parentController.faces[detail]
+                    let face = faces[detail]
                     let name = (face["name"] as String)
                     let about = (face["about"] as String)
                     
@@ -243,7 +243,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                     if let detail = detailItem {
                         if let setName = parentController.detailItem as? String {
                             let setFolder = docPath.stringByAppendingPathComponent(setName)
-                            let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(parentController.faces[detail]["id"] as Int))
+                            let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                             NSFileManager.defaultManager().removeItemAtPath(imageFolder.stringByAppendingPathComponent(imageList[indexPath.item]), error: nil)
                             // Delete the image
                         }

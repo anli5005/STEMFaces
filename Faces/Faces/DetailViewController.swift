@@ -8,9 +8,9 @@
 
 import UIKit
 
+var faces = [[String: AnyObject]]()
+
 class DetailViewController: UICollectionViewController {
-    
-    var faces = [[String: AnyObject]]()
     private var setLoaded = false
     
     var detailItem: AnyObject? {
@@ -21,6 +21,9 @@ class DetailViewController: UICollectionViewController {
     }
     
     func configureView() {
+        if !setLoaded {
+            faces = []
+        }
         if let detail = detailItem as? String {
             let fileManager = NSFileManager.defaultManager() // For easy access
             let setFolder = docPath.stringByAppendingPathComponent(detail)
