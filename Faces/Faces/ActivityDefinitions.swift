@@ -10,6 +10,12 @@ import Foundation
 
 let activities = [
     [
+        "Name": "Review",
+        "Detail": "Review the faces!",
+        "Image": "",
+        "Segue-ID": "activity-review"
+    ],
+    [
         "Name": "Quiz",
         "Detail": "",
         "Image": "",
