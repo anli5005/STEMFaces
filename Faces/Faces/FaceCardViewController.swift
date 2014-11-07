@@ -32,7 +32,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+            
         navigationController?.navigationBarHidden = false
         if let detail = detailItem {
             navigationItem.title = (faces[detail]["name"] as String)

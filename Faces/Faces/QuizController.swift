@@ -10,14 +10,27 @@ import UIKit
 
 class QuizController: UIViewController {
     
+    let textField = UITextField()
+    
     @IBAction func dismiss() {
         presentingViewController?.dismissViewControllerAnimated(true, completion: {})
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
 
         // Do any additional setup after loading the view.
+    }
+    
+    func keyboardDidShow(notification: NSNotification) {
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
     }
 
     override func didReceiveMemoryWarning() {
