@@ -9,6 +9,7 @@
 import UIKit
 
 var faces = [[String: AnyObject]]()
+var nameOfSet: String?
 
 class DetailViewController: UICollectionViewController {
     private var setLoaded = false
@@ -25,6 +26,7 @@ class DetailViewController: UICollectionViewController {
             faces = []
         }
         if let detail = detailItem as? String {
+            nameOfSet = detail
             let fileManager = NSFileManager.defaultManager() // For easy access
             let setFolder = docPath.stringByAppendingPathComponent(detail)
             // Check for image folder

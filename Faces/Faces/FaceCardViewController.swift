@@ -115,6 +115,13 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
             controller.delegate = self
             self.presentViewController(controller, animated: true, completion: {})
         }))
+        promptControl.addAction(UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.Default, handler: {
+            (alertAction: UIAlertAction!) in
+            let controller = UIImagePickerController()
+            controller.sourceType = .Camera
+            controller.delegate = self
+            self.presentViewController(controller, animated: true, completion: {})
+        }))
         promptControl.popoverPresentationController?.sourceView = footerView.addButton
         presentViewController(promptControl, animated: true, completion: {})
     }
