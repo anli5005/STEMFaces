@@ -38,14 +38,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4A2779E119F494D500E6BEE8 /* Faces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faces.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A2779E119F494D500E6BEE8 /* Face Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Face Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2779E519F494D500E6BEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A2779E619F494D500E6BEE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A2779E819F494D500E6BEE8 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		4A2779EA19F494D500E6BEE8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4A2779EF19F494D500E6BEE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4A2779F219F494D500E6BEE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		4A2779F819F494D500E6BEE8 /* FacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A2779F819F494D500E6BEE8 /* Face CardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Face CardsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2779FD19F494D500E6BEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A2779FE19F494D500E6BEE8 /* FacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacesTests.swift; sourceTree = "<group>"; };
 		4A3BF71A19FDD46A0035C5AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -94,8 +94,8 @@
 		4A2779E219F494D500E6BEE8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4A2779E119F494D500E6BEE8 /* Faces.app */,
-				4A2779F819F494D500E6BEE8 /* FacesTests.xctest */,
+				4A2779E119F494D500E6BEE8 /* Face Cards.app */,
+				4A2779F819F494D500E6BEE8 /* Face CardsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,9 +185,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4A2779E019F494D500E6BEE8 /* Faces */ = {
+		4A2779E019F494D500E6BEE8 /* Face Cards */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4A277A0219F494D500E6BEE8 /* Build configuration list for PBXNativeTarget "Faces" */;
+			buildConfigurationList = 4A277A0219F494D500E6BEE8 /* Build configuration list for PBXNativeTarget "Face Cards" */;
 			buildPhases = (
 				4A2779DD19F494D500E6BEE8 /* Sources */,
 				4A2779DE19F494D500E6BEE8 /* Frameworks */,
@@ -197,14 +197,14 @@
 			);
 			dependencies = (
 			);
-			name = Faces;
+			name = "Face Cards";
 			productName = Faces;
-			productReference = 4A2779E119F494D500E6BEE8 /* Faces.app */;
+			productReference = 4A2779E119F494D500E6BEE8 /* Face Cards.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4A2779F719F494D500E6BEE8 /* FacesTests */ = {
+		4A2779F719F494D500E6BEE8 /* Face CardsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4A277A0519F494D500E6BEE8 /* Build configuration list for PBXNativeTarget "FacesTests" */;
+			buildConfigurationList = 4A277A0519F494D500E6BEE8 /* Build configuration list for PBXNativeTarget "Face CardsTests" */;
 			buildPhases = (
 				4A2779F419F494D500E6BEE8 /* Sources */,
 				4A2779F519F494D500E6BEE8 /* Frameworks */,
@@ -215,9 +215,9 @@
 			dependencies = (
 				4A2779FA19F494D500E6BEE8 /* PBXTargetDependency */,
 			);
-			name = FacesTests;
+			name = "Face CardsTests";
 			productName = FacesTests;
-			productReference = 4A2779F819F494D500E6BEE8 /* FacesTests.xctest */;
+			productReference = 4A2779F819F494D500E6BEE8 /* Face CardsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -231,6 +231,7 @@
 				TargetAttributes = {
 					4A2779E019F494D500E6BEE8 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 9DDM72ZZ79;
 					};
 					4A2779F719F494D500E6BEE8 = {
 						CreatedOnToolsVersion = 6.1;
@@ -238,7 +239,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4A2779DC19F494D500E6BEE8 /* Build configuration list for PBXProject "Faces" */;
+			buildConfigurationList = 4A2779DC19F494D500E6BEE8 /* Build configuration list for PBXProject "Face Cards" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -251,8 +252,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4A2779E019F494D500E6BEE8 /* Faces */,
-				4A2779F719F494D500E6BEE8 /* FacesTests */,
+				4A2779E019F494D500E6BEE8 /* Face Cards */,
+				4A2779F719F494D500E6BEE8 /* Face CardsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -312,7 +313,7 @@
 /* Begin PBXTargetDependency section */
 		4A2779FA19F494D500E6BEE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4A2779E019F494D500E6BEE8 /* Faces */;
+			target = 4A2779E019F494D500E6BEE8 /* Face Cards */;
 			targetProxy = 4A2779F919F494D500E6BEE8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -420,10 +421,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Faces/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Face Cards";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -431,10 +435,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Faces/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Face Cards";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -452,7 +459,7 @@
 				);
 				INFOPLIST_FILE = FacesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Face CardsTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faces.app/Faces";
 			};
 			name = Debug;
@@ -467,7 +474,7 @@
 				);
 				INFOPLIST_FILE = FacesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Face CardsTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faces.app/Faces";
 			};
 			name = Release;
@@ -475,7 +482,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4A2779DC19F494D500E6BEE8 /* Build configuration list for PBXProject "Faces" */ = {
+		4A2779DC19F494D500E6BEE8 /* Build configuration list for PBXProject "Face Cards" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4A277A0019F494D500E6BEE8 /* Debug */,
@@ -484,7 +491,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4A277A0219F494D500E6BEE8 /* Build configuration list for PBXNativeTarget "Faces" */ = {
+		4A277A0219F494D500E6BEE8 /* Build configuration list for PBXNativeTarget "Face Cards" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4A277A0319F494D500E6BEE8 /* Debug */,
@@ -493,7 +500,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4A277A0519F494D500E6BEE8 /* Build configuration list for PBXNativeTarget "FacesTests" */ = {
+		4A277A0519F494D500E6BEE8 /* Build configuration list for PBXNativeTarget "Face CardsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4A277A0619F494D500E6BEE8 /* Debug */,

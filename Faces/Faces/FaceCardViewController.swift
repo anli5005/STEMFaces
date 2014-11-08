@@ -140,7 +140,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                     let setFolder = docPath.stringByAppendingPathComponent(setName)
                     let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                     let imageToSave = correctlyOrientedImage(image)
-                    UIImagePNGRepresentation(imageToSave).writeToFile(imageFolder.stringByAppendingPathComponent("\(imageName).png"), atomically: true)
+                    UIImageJPEGRepresentation(imageToSave, 0.5).writeToFile(imageFolder.stringByAppendingPathComponent("\(imageName).png"), atomically: true)
                     imageList.append("\(imageName).png")
                 }
             }

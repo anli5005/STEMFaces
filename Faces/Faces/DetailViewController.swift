@@ -152,8 +152,12 @@ class DetailViewController: UICollectionViewController {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Activity", forIndexPath: indexPath) as ActivityCollectionViewCell
             let activity = activities[indexPath.item]
-            cell.nameLabel.text   = activity["Name"]
-            cell.detailLabel.text = activity["Detail"]
+            cell.nameLabel.text = activity["Name"]
+            if faces.isEmpty {
+                cell.detailLabel.text = "Requires 1 face"
+            } else {
+                cell.detailLabel.text = activity["Detail"]
+            }
             aCell = cell
         } else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Face Card", forIndexPath: indexPath) as FaceCardCollectionViewCell
@@ -192,7 +196,11 @@ class DetailViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+        if indexPath.section == 0 {
+            return !faces.isEmpty
+        } else {
+            return true
+        }
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

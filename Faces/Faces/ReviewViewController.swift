@@ -26,8 +26,17 @@ class ReviewViewController: UIViewController {
         return (rand() % 2) == 1
     }
     
-    var currentFaceIndex = 0
-    var revealed = false
+    var currentFaceIndex: Int = 0 {
+        didSet {
+            revealed = false
+            refreshData()
+        }
+    }
+    var revealed: Bool = false {
+        didSet {
+            refreshData()
+        }
+    }
     
     @IBAction func dismiss() {
         presentingViewController?.dismissViewControllerAnimated(true, completion: {})
@@ -35,17 +44,14 @@ class ReviewViewController: UIViewController {
     
     @IBAction func stepperChange(sender: UIStepper?) {
         currentFaceIndex = Int(stepper.value)
-        refreshData()
     }
     
     @IBAction func sliderChange(sender: UISlider?) {
         currentFaceIndex = Int(round(slider.value))
-        refreshData()
     }
     
     @IBAction func reveal(sender: AnyObject?) {
         revealed = !revealed
-        refreshData()
     }
     
     func refreshData() {
@@ -55,6 +61,8 @@ class ReviewViewController: UIViewController {
         numberLabel.text = "Face \(currentFaceIndex + 1) of \(shuffledFaces.count)"
         
         nameLabel.text = revealed ? shuffledFaces[currentFaceIndex]["name"] as String : "?"
+        
+        aboutTextView.text = shuffledFaces[currentFaceIndex]["about"] as String
     }
 
     override func viewDidLoad() {
