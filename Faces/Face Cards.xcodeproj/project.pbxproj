@@ -460,7 +460,7 @@
 				INFOPLIST_FILE = FacesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "Face CardsTests";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faces.app/Faces";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Face Cards.app/Face Cards";
 			};
 			name = Debug;
 		};
@@ -475,7 +475,7 @@
 				INFOPLIST_FILE = FacesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "Face CardsTests";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faces.app/Faces";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Face Cards.app/Face Cards";
 			};
 			name = Release;
 		};
