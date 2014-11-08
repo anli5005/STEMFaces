@@ -5,3 +5,6 @@ This is the STEM Club Team Two's 2014 project app that focuses on helping people
 
 It is still being developed, so stay tuned!
 
+## TODO ##
+- Respond to memory warnings
+

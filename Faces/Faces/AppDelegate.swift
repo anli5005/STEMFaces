@@ -8,6 +8,19 @@
 
 import UIKit
 
+func correctlyOrientedImage(image: UIImage) -> UIImage {
+    if image.imageOrientation == .Up {
+        return image
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
+    image.drawInRect(CGRectMake(0, 0, image.size.width, image.size.height))
+    var rotated = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return rotated
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 

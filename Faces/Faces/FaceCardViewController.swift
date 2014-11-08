@@ -139,7 +139,8 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                 if let detail = detailItem {
                     let setFolder = docPath.stringByAppendingPathComponent(setName)
                     let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
-                    UIImagePNGRepresentation(image).writeToFile(imageFolder.stringByAppendingPathComponent("\(imageName).png"), atomically: true)
+                    let imageToSave = correctlyOrientedImage(image)
+                    UIImagePNGRepresentation(imageToSave).writeToFile(imageFolder.stringByAppendingPathComponent("\(imageName).png"), atomically: true)
                     imageList.append("\(imageName).png")
                 }
             }
@@ -186,7 +187,12 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                 let setFolder = docPath.stringByAppendingPathComponent(setName)
                 let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                 let filename = imageFolder.stringByAppendingPathComponent(imageList[indexPath.item])
-                cell.image?.image = UIImage(contentsOfFile: filename)
+                if let theImage = UIImage(contentsOfFile: filename) {
+                    let imageToDisplay = correctlyOrientedImage(theImage)
+                    cell.image?.image = imageToDisplay
+                } else {
+                    cell.image?.image = nil
+                }
             }
         }
         return cell
