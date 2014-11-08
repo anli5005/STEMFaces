@@ -258,6 +258,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                             let setFolder = docPath.stringByAppendingPathComponent(setName)
                             let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                             NSFileManager.defaultManager().removeItemAtPath(imageFolder.stringByAppendingPathComponent(imageList[indexPath.item]), error: nil)
+                            imageList.removeAtIndex(indexPath.item)
                             // Delete the image
                         }
                     }
