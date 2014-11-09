@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewViewController: UIViewController {
+class FlashcardViewController: UIViewController {
     
     // MARK: Interface Builder Outlets
     
@@ -105,6 +105,13 @@ class ReviewViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func moveLeft(sender: AnyObject?) {
+        currentFaceIndex -= 1
+    }
+    
+    @IBAction func moveRight(sender: AnyObject?) {
+        currentFaceIndex += 1
+    }
     
     /*
     // MARK: - Navigation

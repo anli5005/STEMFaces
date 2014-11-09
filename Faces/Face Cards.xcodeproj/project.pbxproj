@@ -23,7 +23,6 @@
 		4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */; };
 		4AD568AB19FD363300EA2234 /* ButtonCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */; };
 		4AD568AD19FD363F00EA2234 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */; };
-		4ADD5C981A0BEA03004C3332 /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADD5C971A0BEA03004C3332 /* QuizController.swift */; };
 		4AFD3C431A0D52BF00A6E00F /* BorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFD3C421A0D52BF00A6E00F /* BorderButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +58,6 @@
 		4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCollectionReusableView.swift; sourceTree = "<group>"; };
 		4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
-		4ADD5C971A0BEA03004C3332 /* QuizController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
 		4AFD3C421A0D52BF00A6E00F /* BorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				4A7A26C81A0D2120008238CC /* ReviewViewController.swift */,
-				4ADD5C971A0BEA03004C3332 /* QuizController.swift */,
 			);
 			name = Activities;
 			sourceTree = "<group>";
@@ -292,7 +289,6 @@
 				4AA23CE81A0084090073739D /* DetailFooterCollectionReusableView.swift in Sources */,
 				4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */,
 				4AD568AB19FD363300EA2234 /* ButtonCollectionReusableView.swift in Sources */,
-				4ADD5C981A0BEA03004C3332 /* QuizController.swift in Sources */,
 				4A2779E719F494D500E6BEE8 /* AppDelegate.swift in Sources */,
 				4AACA9CD19FC8F3200880E86 /* FaceCardViewController.swift in Sources */,
 				4A9A68501A0AE1B700D89597 /* ActivityDefinitions.swift in Sources */,
