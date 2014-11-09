@@ -123,6 +123,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
             self.presentViewController(controller, animated: true, completion: {})
         }))
         promptControl.popoverPresentationController?.sourceView = footerView.addButton
+        promptControl.popoverPresentationController?.sourceRect = CGRect(x: CGRectGetMidX(footerView.addButton.frame), y: CGRectGetMidY(footerView.addButton.frame), width: 1, height: 1)
         presentViewController(promptControl, animated: true, completion: {})
     }
     
