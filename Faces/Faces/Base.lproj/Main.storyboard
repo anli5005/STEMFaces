@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Master-->
+        <!--Face Cards-->
         <scene sceneID="pY4-Hu-kfo">
             <objects>
-                <navigationController title="Master" id="RMx-3f-FxP" sceneMemberID="viewController">
+                <navigationController title="Face Cards" id="RMx-3f-FxP" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -216,7 +216,7 @@
             </objects>
             <point key="canvasLocation" x="728" y="87"/>
         </scene>
-        <!--Flash Cards-->
+        <!--Flashcard View Controller-->
         <scene sceneID="cbg-YA-H8w">
             <objects>
                 <viewController id="Mvr-c5-0Vc" customClass="FlashcardViewController" customModule="Face_Cards" customModuleProvider="target" sceneMemberID="viewController">
@@ -312,11 +312,24 @@
                     <toolbarItems>
                         <barButtonItem id="9zx-F8-K7j"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Flash Cards" id="pLe-tN-0tL">
+                    <navigationItem key="navigationItem" id="pLe-tN-0tL">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="oce-sv-8yK">
                             <connections>
                                 <action selector="dismiss" destination="Mvr-c5-0Vc" id="XyC-Oz-9Yn"/>
                             </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" width="200" id="hT9-zU-bMD">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="Oji-BD-hcd">
+                                <rect key="frame" x="315" y="7" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Both Sides" width="100"/>
+                                    <segment title="Front" width="100"/>
+                                </segments>
+                                <connections>
+                                    <action selector="updateAlwaysShowsName:" destination="Mvr-c5-0Vc" eventType="valueChanged" id="Nzv-qx-NL5"/>
+                                </connections>
+                            </segmentedControl>
                         </barButtonItem>
                         <connections>
                             <outlet property="backBarButtonItem" destination="oce-sv-8yK" id="Bc8-mA-dIl"/>
@@ -327,6 +340,8 @@
                         <outlet property="imageView" destination="ACs-CC-9cy" id="pmb-XQ-XO2"/>
                         <outlet property="nameLabel" destination="Jpe-ca-SZ4" id="dYQ-8e-Cpq"/>
                         <outlet property="numberLabel" destination="0b7-kY-x0L" id="gSQ-7U-WKa"/>
+                        <outlet property="revealButton" destination="KmM-M2-Q8K" id="mA1-fx-swH"/>
+                        <outlet property="showsNameSegments" destination="Oji-BD-hcd" id="Jjq-aw-mQS"/>
                         <outlet property="stepper" destination="0Nh-Me-o5f" id="wAu-iM-8RJ"/>
                     </connections>
                 </viewController>

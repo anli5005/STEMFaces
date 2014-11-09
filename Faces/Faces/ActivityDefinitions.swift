@@ -12,7 +12,6 @@ let activities = [
     [
         "Name": "Flash Cards",
         "Detail": "Learn in a flash!",
-        "Image": "",
         "Segue-ID": "activity-flashcard"
     ]
 ]

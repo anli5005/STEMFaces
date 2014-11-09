@@ -14,7 +14,7 @@
 		4A2779F319F494D500E6BEE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2779F119F494D500E6BEE8 /* LaunchScreen.xib */; };
 		4A2779FF19F494D500E6BEE8 /* FacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779FE19F494D500E6BEE8 /* FacesTests.swift */; };
 		4A3BF71B19FDD46A0035C5AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A3BF71919FDD46A0035C5AD /* Main.storyboard */; };
-		4A7A26C91A0D2120008238CC /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A26C81A0D2120008238CC /* ReviewViewController.swift */; };
+		4A7A26C91A0D2120008238CC /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A26C81A0D2120008238CC /* FlashcardViewController.swift */; };
 		4A820E1C19FC146600B77B82 /* FaceCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */; };
 		4A9A684D1A0AE0C500D89597 /* ActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A684C1A0AE0C500D89597 /* ActivityCollectionViewCell.swift */; };
 		4A9A68501A0AE1B700D89597 /* ActivityDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A684F1A0AE1B700D89597 /* ActivityDefinitions.swift */; };
@@ -48,7 +48,7 @@
 		4A2779FD19F494D500E6BEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A2779FE19F494D500E6BEE8 /* FacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacesTests.swift; sourceTree = "<group>"; };
 		4A3BF71A19FDD46A0035C5AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4A7A26C81A0D2120008238CC /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		4A7A26C81A0D2120008238CC /* FlashcardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardViewController.swift; sourceTree = "<group>"; };
 		4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A9A684C1A0AE0C500D89597 /* ActivityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A9A684F1A0AE1B700D89597 /* ActivityDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDefinitions.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 		4ADD5C961A0BE9E4004C3332 /* Activities */ = {
 			isa = PBXGroup;
 			children = (
-				4A7A26C81A0D2120008238CC /* ReviewViewController.swift */,
+				4A7A26C81A0D2120008238CC /* FlashcardViewController.swift */,
 			);
 			name = Activities;
 			sourceTree = "<group>";
@@ -282,7 +282,7 @@
 			files = (
 				4A9A684D1A0AE0C500D89597 /* ActivityCollectionViewCell.swift in Sources */,
 				4AD568AD19FD363F00EA2234 /* HeaderCollectionReusableView.swift in Sources */,
-				4A7A26C91A0D2120008238CC /* ReviewViewController.swift in Sources */,
+				4A7A26C91A0D2120008238CC /* FlashcardViewController.swift in Sources */,
 				4A2779EB19F494D500E6BEE8 /* DetailViewController.swift in Sources */,
 				4A2779E919F494D500E6BEE8 /* MasterViewController.swift in Sources */,
 				4A820E1C19FC146600B77B82 /* FaceCardCollectionViewCell.swift in Sources */,

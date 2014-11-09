@@ -1,5 +1,5 @@
 //
-//  ReviewViewController.swift
+//  FlashcardViewController.swift
 //  Faces
 //
 //  Created by Anthony Li on 11/7/14.
@@ -14,10 +14,13 @@ class FlashcardViewController: UIViewController {
     
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet weak var revealButton: UIButton!
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var showsNameSegments: UISegmentedControl!
     
     // MARK:
     
@@ -38,10 +41,29 @@ class FlashcardViewController: UIViewController {
         }
     }
     
+    var alwaysShowName: Bool = false {
+        didSet {
+            refreshData()
+        }
+    }
+    
     private var imageLoaded = false
     
     @IBAction func dismiss() {
         presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    @IBAction func updateAlwaysShowsName(sender: UISegmentedControl?) {
+        if let theSender = sender {
+            switch theSender.selectedSegmentIndex {
+            case 0:
+                alwaysShowName = true
+            case 1:
+                alwaysShowName = false
+            default:
+                assert(false, "Unexpected value for selected segment: " + String(theSender.selectedSegmentIndex))
+            }
+        }
     }
     
     @IBAction func stepperChange(sender: UIStepper?) {
@@ -49,7 +71,13 @@ class FlashcardViewController: UIViewController {
     }
     
     @IBAction func reveal(sender: AnyObject?) {
-        revealed = !revealed
+        if alwaysShowName {
+            if currentFaceIndex + 1 < shuffledFaces.count {
+                currentFaceIndex += 1
+            }
+        } else {
+            revealed = !revealed
+        }
     }
     
     func refreshData() {
@@ -57,7 +85,7 @@ class FlashcardViewController: UIViewController {
         
         numberLabel.text = "Face \(currentFaceIndex + 1) of \(shuffledFaces.count)"
         
-        nameLabel.text = revealed ? shuffledFaces[currentFaceIndex]["name"] as String : "?"
+        nameLabel.text = revealed || alwaysShowName ? shuffledFaces[currentFaceIndex]["name"] as String : "?"
         
         aboutLabel.text = (shuffledFaces[currentFaceIndex]["about"] as String)
         
@@ -87,6 +115,8 @@ class FlashcardViewController: UIViewController {
                 }
             }
         }
+        
+        revealButton.setTitle(alwaysShowName ? "Next" : "Reveal", forState: .Normal)
     }
     
     override func viewDidLoad() {
@@ -96,6 +126,9 @@ class FlashcardViewController: UIViewController {
         
         stepper.minimumValue = 0
         stepper.maximumValue = Double(shuffledFaces.count - 1)
+        
+        showsNameSegments.setWidth(100, forSegmentAtIndex: 0)
+        showsNameSegments.setWidth(100, forSegmentAtIndex: 1)
         
         refreshData()
     }

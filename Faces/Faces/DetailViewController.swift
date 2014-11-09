@@ -64,7 +64,6 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject")
         self.navigationItem.rightBarButtonItem = addButton
         // Do any additional setup after loading the view
-        collectionView.delegate = self
         self.configureView()
     }
     
