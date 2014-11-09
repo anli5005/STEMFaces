@@ -11,7 +11,7 @@ import UIKit
 var faces = [[String: AnyObject]]()
 var nameOfSet: String?
 
-class DetailViewController: UICollectionViewController {
+class DetailViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     private var setLoaded = false
     
     var detailItem: AnyObject? {
@@ -64,6 +64,7 @@ class DetailViewController: UICollectionViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject")
         self.navigationItem.rightBarButtonItem = addButton
         // Do any additional setup after loading the view
+        collectionView.delegate = self
         self.configureView()
     }
     
@@ -212,6 +213,19 @@ class DetailViewController: UICollectionViewController {
             // Perform the segue
             performSegueWithIdentifier("showCard", sender: indexPath)
         }
+    }
+    
+    // MARK: Collection View Flow Layout
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        if indexPath.section == 0 {
+            return CGSize(width: 158, height: 63)
+        } else {
+            return CGSize(width: 130, height: 147)
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }
 

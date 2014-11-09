@@ -266,7 +266,9 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                     collectionView.reloadData()
                 }
                 alertController.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: deleteHandler))
-                alertController.popoverPresentationController?.sourceView = collectionView.cellForItemAtIndexPath(indexPath)!
+                let cell = collectionView.cellForItemAtIndexPath(indexPath)!
+                alertController.popoverPresentationController?.sourceView = cell
+                // alertController.popoverPresentationController?.sourceRect = CGRect(x: CGRectGetMidX(cell.frame), y: CGRectGetMidY(cell.frame), width: 0, height: 0)
                 presentViewController(alertController, animated: true, completion: {})
             }
     }

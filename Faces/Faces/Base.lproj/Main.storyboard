@@ -114,28 +114,42 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="158" height="147"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="158" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Detail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIc-Cm-5dm">
-                                            <rect key="frame" x="8" y="118" width="142" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuR-te-wiQ">
-                                            <rect key="frame" x="8" y="92" width="142" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Activity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuR-te-wiQ">
+                                            <rect key="frame" x="8" y="8" width="142" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KCp-5b-bwn"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIc-Cm-5dm">
+                                            <rect key="frame" x="8" y="32" width="142" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" red="1" green="0.70058079769736847" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="FuR-te-wiQ" firstAttribute="top" secondItem="uF3-fT-MAv" secondAttribute="topMargin" id="Smj-xm-qV7"/>
+                                    <constraint firstItem="TIc-Cm-5dm" firstAttribute="top" secondItem="FuR-te-wiQ" secondAttribute="bottom" constant="3" id="UNv-ND-ZwE"/>
+                                    <constraint firstItem="FuR-te-wiQ" firstAttribute="leading" secondItem="uF3-fT-MAv" secondAttribute="leadingMargin" id="Uft-bM-fAJ"/>
+                                    <constraint firstItem="TIc-Cm-5dm" firstAttribute="trailing" secondItem="uF3-fT-MAv" secondAttribute="trailingMargin" id="akh-bZ-U15"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="TIc-Cm-5dm" secondAttribute="bottom" constant="2" id="sha-mh-IXs"/>
+                                    <constraint firstItem="TIc-Cm-5dm" firstAttribute="leading" secondItem="uF3-fT-MAv" secondAttribute="leadingMargin" id="tN2-3L-N2c"/>
+                                    <constraint firstItem="FuR-te-wiQ" firstAttribute="trailing" secondItem="uF3-fT-MAv" secondAttribute="trailingMargin" id="xxj-eW-mAm"/>
+                                </constraints>
+                                <size key="customSize" width="158" height="63"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="UNv-ND-ZwE"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="detailLabel" destination="TIc-Cm-5dm" id="Y7H-C7-qqX"/>
-                                    <outlet property="image" destination="KCp-5b-bwn" id="Xpb-Zx-Vvh"/>
                                     <outlet property="nameLabel" destination="FuR-te-wiQ" id="CIh-nd-KqH"/>
                                 </connections>
                             </collectionViewCell>
@@ -200,7 +214,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6by-05-BVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="728" y="129"/>
+            <point key="canvasLocation" x="728" y="87"/>
         </scene>
         <!--Flash Cards-->
         <scene sceneID="cbg-YA-H8w">
@@ -334,7 +348,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mhA-Vb-rMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1316" y="129"/>
+            <point key="canvasLocation" x="1380" y="87"/>
         </scene>
         <!--Face Card View Controller-->
         <scene sceneID="oJK-Rd-9n3">
@@ -461,7 +475,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIL-uJ-nzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1951" y="129"/>
+            <point key="canvasLocation" x="2049" y="87"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lVN-Dz-DBR">
