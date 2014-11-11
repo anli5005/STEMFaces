@@ -128,12 +128,9 @@ class MasterViewController: UITableViewController {
                 objects.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             } else {
-                let alert = UIAlertView()
-                alert.title = "Error deleting set"
-                alert.message = error!.localizedDescription
-                alert.addButtonWithTitle("OK")
-                alert.cancelButtonIndex = 0
-                alert.show()
+                let alert = UIAlertController(title: "Oops", message: "There was an error deleting the set. (\(error!.localizedDescription))", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+                presentViewController(alert, animated: true, completion: nil)
             }
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

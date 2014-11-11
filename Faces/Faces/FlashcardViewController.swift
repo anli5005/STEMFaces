@@ -117,6 +117,8 @@ class FlashcardViewController: UIViewController {
         }
         
         revealButton.setTitle(alwaysShowName ? "Next" : "Reveal", forState: .Normal)
+        
+        revealButton.enabled = (currentFaceIndex + 1 < shuffledFaces.count)
     }
     
     override func viewDidLoad() {
