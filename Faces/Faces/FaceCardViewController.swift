@@ -11,6 +11,7 @@ import UIKit
 class FaceCardViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout {
     
     weak var parentController: DetailViewController!
+    weak var delegate: FaceCardControllerDelegate?
     var detailItem: Int? {
         didSet {
             configureView()
@@ -27,7 +28,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     weak var aboutField: UITextField!
     
     func dismiss() {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+        delegate?.shouldDismissController?(self)
     }
     
     override func viewDidLoad() {
@@ -39,9 +40,6 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         }
         
         self.navigationItem.rightBarButtonItem = editButtonItem()
-        
-        let backButton = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: "goBack:")
-        self.navigationItem.leftBarButtonItem = backButton
     }
     
     func goBack(sender: AnyObject) {
@@ -85,8 +83,8 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         for textField in [nameField, aboutField] {
-            textField.enabled = editing
-            textField.borderStyle = editing ? .RoundedRect : .None
+            textField?.enabled = editing
+            textField?.borderStyle = editing ? .RoundedRect : .None
         }
         footerView?.hidden = !editing
     }
@@ -223,6 +221,9 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                 }
                 nameField.enabled  = editing
                 aboutField.enabled = editing
+                
+                nameField.borderStyle = editing ? .RoundedRect : .None
+                aboutField?.borderStyle = editing ? .RoundedRect : .None
                 return view
             } else {
                 let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Button Cell", forIndexPath:indexPath) as ButtonCollectionReusableView
@@ -277,4 +278,13 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
     }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+}
+
+// MARK: Controller Protocol
+@objc protocol FaceCardControllerDelegate: NSObjectProtocol {
+    optional func shouldDismissController(controller: FaceCardViewController)
 }

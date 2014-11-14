@@ -12,9 +12,9 @@ class FlashcardViewController: UIViewController {
     
     // MARK: Interface Builder Outlets
     
-    @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var numberLabel: UILabel!
-    @IBOutlet weak var revealButton: UIButton!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var aboutLabel: UILabel!
@@ -41,17 +41,13 @@ class FlashcardViewController: UIViewController {
         }
     }
     
-    var alwaysShowName: Bool = false {
+    var alwaysShowName: Bool = true {
         didSet {
             refreshData()
         }
     }
     
     private var imageLoaded = false
-    
-    @IBAction func dismiss() {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: {})
-    }
     
     @IBAction func updateAlwaysShowsName(sender: UISegmentedControl?) {
         if let theSender = sender {
@@ -66,26 +62,36 @@ class FlashcardViewController: UIViewController {
         }
     }
     
-    @IBAction func stepperChange(sender: UIStepper?) {
-        currentFaceIndex = Int(stepper.value)
+    @IBAction func previous(sender: AnyObject?) {
+        if currentFaceIndex - 1 >= 0 {
+            currentFaceIndex -= 1
+        }
     }
     
-    @IBAction func reveal(sender: AnyObject?) {
+    @IBAction func next(sender: AnyObject?) {
         if alwaysShowName {
             if currentFaceIndex + 1 < shuffledFaces.count {
                 currentFaceIndex += 1
             }
         } else {
-            revealed = !revealed
+            if revealed {
+                if currentFaceIndex + 1 < shuffledFaces.count {
+                    currentFaceIndex += 1
+                }
+            } else {
+                revealed = true
+            }
         }
     }
     
     func refreshData() {
-        stepper.value = Double(currentFaceIndex)
+        numberLabel.text = "\(currentFaceIndex + 1) of \(shuffledFaces.count)"
         
-        numberLabel.text = "Face \(currentFaceIndex + 1) of \(shuffledFaces.count)"
+        nameLabel.text = revealed || alwaysShowName ? shuffledFaces[currentFaceIndex]["name"] as String : ((currentFaceIndex < 1) ? "Tap Reveal to reveal the name" : "?")
         
-        nameLabel.text = revealed || alwaysShowName ? shuffledFaces[currentFaceIndex]["name"] as String : "?"
+        nameLabel.textColor = !(revealed || alwaysShowName) ? UIColor.grayColor() : UIColor.blackColor()
+        
+        nameLabel.font = (!(revealed || alwaysShowName) && currentFaceIndex < 1) ? nameLabel.font.fontWithSize(18) : nameLabel.font.fontWithSize(36)
         
         aboutLabel.text = (shuffledFaces[currentFaceIndex]["about"] as String)
         
@@ -116,18 +122,16 @@ class FlashcardViewController: UIViewController {
             }
         }
         
-        revealButton.setTitle(alwaysShowName ? "Next" : "Reveal", forState: .Normal)
+        previousButton.enabled = currentFaceIndex - 1 >= 0
         
-        revealButton.enabled = (currentFaceIndex + 1 < shuffledFaces.count)
+        nextButton.enabled = (alwaysShowName || revealed) ? (currentFaceIndex + 1 < shuffledFaces.count) : true
+        nextButton.setTitle((alwaysShowName || revealed) ? "Next" : "Reveal", forState: .Normal)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
-        stepper.minimumValue = 0
-        stepper.maximumValue = Double(shuffledFaces.count - 1)
         
         showsNameSegments.setWidth(100, forSegmentAtIndex: 0)
         showsNameSegments.setWidth(100, forSegmentAtIndex: 1)
@@ -139,23 +143,4 @@ class FlashcardViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func moveLeft(sender: AnyObject?) {
-        currentFaceIndex -= 1
-    }
-    
-    @IBAction func moveRight(sender: AnyObject?) {
-        currentFaceIndex += 1
-    }
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
 }

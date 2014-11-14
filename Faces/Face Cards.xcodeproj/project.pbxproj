@@ -15,6 +15,7 @@
 		4A2779F319F494D500E6BEE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2779F119F494D500E6BEE8 /* LaunchScreen.xib */; };
 		4A2779FF19F494D500E6BEE8 /* FacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779FE19F494D500E6BEE8 /* FacesTests.swift */; };
 		4A3BF71B19FDD46A0035C5AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A3BF71919FDD46A0035C5AD /* Main.storyboard */; };
+		4A44BF901A15837500D03E0D /* SetDetailReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44BF8F1A15837500D03E0D /* SetDetailReusableView.swift */; };
 		4A7A26C91A0D2120008238CC /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A26C81A0D2120008238CC /* FlashcardViewController.swift */; };
 		4A820E1C19FC146600B77B82 /* FaceCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */; };
 		4A9A684D1A0AE0C500D89597 /* ActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A684C1A0AE0C500D89597 /* ActivityCollectionViewCell.swift */; };
@@ -22,6 +23,7 @@
 		4AA23CE81A0084090073739D /* DetailFooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA23CE71A0084090073739D /* DetailFooterCollectionReusableView.swift */; };
 		4AACA9CD19FC8F3200880E86 /* FaceCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */; };
 		4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */; };
+		4ABA739F1A144CE90097C1A0 /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA739E1A144CE90097C1A0 /* PlayView.swift */; };
 		4AD568AB19FD363300EA2234 /* ButtonCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */; };
 		4AD568AD19FD363F00EA2234 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */; };
 		4AFD3C431A0D52BF00A6E00F /* BorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFD3C421A0D52BF00A6E00F /* BorderButton.swift */; };
@@ -50,6 +52,7 @@
 		4A2779FD19F494D500E6BEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A2779FE19F494D500E6BEE8 /* FacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacesTests.swift; sourceTree = "<group>"; };
 		4A3BF71A19FDD46A0035C5AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4A44BF8F1A15837500D03E0D /* SetDetailReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDetailReusableView.swift; sourceTree = "<group>"; };
 		4A7A26C81A0D2120008238CC /* FlashcardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardViewController.swift; sourceTree = "<group>"; };
 		4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A9A684C1A0AE0C500D89597 /* ActivityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		4AA23CE71A0084090073739D /* DetailFooterCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceCardViewController.swift; sourceTree = "<group>"; };
 		4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		4ABA739E1A144CE90097C1A0 /* PlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
 		4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCollectionReusableView.swift; sourceTree = "<group>"; };
 		4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		4AFD3C421A0D52BF00A6E00F /* BorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderButton.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */,
 				4AA23CE71A0084090073739D /* DetailFooterCollectionReusableView.swift */,
 				4A9A684C1A0AE0C500D89597 /* ActivityCollectionViewCell.swift */,
+				4A44BF8F1A15837500D03E0D /* SetDetailReusableView.swift */,
 			);
 			name = "Collection View Stuff";
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				4AFD3C421A0D52BF00A6E00F /* BorderButton.swift */,
+				4ABA739E1A144CE90097C1A0 /* PlayView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -294,9 +300,11 @@
 				4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */,
 				4AD568AB19FD363300EA2234 /* ButtonCollectionReusableView.swift in Sources */,
 				4A2779E719F494D500E6BEE8 /* AppDelegate.swift in Sources */,
+				4ABA739F1A144CE90097C1A0 /* PlayView.swift in Sources */,
 				4AACA9CD19FC8F3200880E86 /* FaceCardViewController.swift in Sources */,
 				4A9A68501A0AE1B700D89597 /* ActivityDefinitions.swift in Sources */,
 				4AFD3C431A0D52BF00A6E00F /* BorderButton.swift in Sources */,
+				4A44BF901A15837500D03E0D /* SetDetailReusableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
