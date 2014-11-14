@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,40 +10,31 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Face Cards" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="20" y="8" width="441" height="66"/>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQ1-zL-ayD">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="66" id="Xda-hx-pYC"/>
+                        <constraint firstAttribute="height" constant="44" id="h0O-Ry-QIq"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="72"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmP-gP-6um">
-                    <rect key="frame" x="8" y="443" width="464" height="29"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="29" id="OO5-ym-mMq"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="App Icon for Faces Large.png" translatesAutoresizingMaskIntoConstraints="NO" id="IVG-Bs-gIF">
-                    <rect key="frame" x="20" y="82" width="441" height="358"/>
+                    <items>
+                        <navigationItem title="Face Cards" id="TYj-Hz-raf">
+                            <barButtonItem key="leftBarButtonItem" title="Edit" id="x2m-gE-acb"/>
+                            <barButtonItem key="rightBarButtonItem" systemItem="add" id="AUF-ET-7Cq"/>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="App Icon for Faces Large.png" translatesAutoresizingMaskIntoConstraints="NO" id="C2z-1e-HQK">
+                    <rect key="frame" x="0.0" y="44" width="480" height="436"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="ZmP-gP-6um" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="4jz-Ml-NNh"/>
-                <constraint firstItem="ZmP-gP-6um" firstAttribute="top" secondItem="IVG-Bs-gIF" secondAttribute="bottom" constant="3" id="6XK-HO-VUb"/>
-                <constraint firstItem="IVG-Bs-gIF" firstAttribute="centerX" secondItem="ZmP-gP-6um" secondAttribute="centerX" id="6yH-rf-vhh"/>
-                <constraint firstItem="IVG-Bs-gIF" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="8" symbolic="YES" id="88W-ej-4BB"/>
-                <constraint firstItem="IVG-Bs-gIF" firstAttribute="trailing" secondItem="kId-c2-rCX" secondAttribute="trailing" id="CJd-ka-3N6"/>
-                <constraint firstItem="ZmP-gP-6um" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="K22-Pl-U33"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Uhg-SZ-A7Y"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="fZf-2r-nBs"/>
-                <constraint firstItem="IVG-Bs-gIF" firstAttribute="leading" secondItem="kId-c2-rCX" secondAttribute="leading" id="gLx-nr-ijY"/>
-                <constraint firstItem="ZmP-gP-6um" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="jFF-6Z-U9H"/>
+                <constraint firstItem="fQ1-zL-ayD" firstAttribute="leading" secondItem="C2z-1e-HQK" secondAttribute="leading" id="BWf-Cs-oIM"/>
+                <constraint firstItem="C2z-1e-HQK" firstAttribute="top" secondItem="fQ1-zL-ayD" secondAttribute="bottom" id="HUY-fX-DnG"/>
+                <constraint firstAttribute="trailing" secondItem="fQ1-zL-ayD" secondAttribute="trailing" id="NF9-zS-HxM"/>
+                <constraint firstItem="fQ1-zL-ayD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Q9F-xi-Gzk"/>
+                <constraint firstItem="C2z-1e-HQK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Urp-hH-aqz"/>
+                <constraint firstItem="fQ1-zL-ayD" firstAttribute="trailing" secondItem="C2z-1e-HQK" secondAttribute="trailing" id="ZMB-cl-hp1"/>
+                <constraint firstAttribute="bottom" secondItem="C2z-1e-HQK" secondAttribute="bottom" id="dAM-Sb-G2g"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
