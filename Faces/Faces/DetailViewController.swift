@@ -11,7 +11,14 @@ import UIKit
 var faces = [[String: AnyObject]]()
 var nameOfSet: String?
 
+@objc protocol DetailControllerDelegate: NSObjectProtocol {
+    optional func didRenameSetTo(newName: String, previousName: String)
+}
+
 class DetailViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FaceCardControllerDelegate {
+    
+    weak var delegate: DetailControllerDelegate?
+    
     private var setLoaded = false
     
     var detailItem: AnyObject? {
@@ -89,11 +96,12 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
                         var error: NSError?
                         let filePath = docPath.stringByAppendingPathComponent(setName)
                         NSFileManager.defaultManager().moveItemAtPath(filePath, toPath: docPath.stringByAppendingPathComponent(name), error: &error)
-                        if error != nil {
+                        if let theError = error {
                             let errorView = UIAlertController(title: "Oops!", message: (errorAlerts[theError.code] ?? "There was a problem. (Error code \(theError.code))"), preferredStyle: .Alert)
                             errorView.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
                             self.presentViewController(errorView, animated: true, completion: nil)
                         } else {
+                            self.delegate?.didRenameSetTo?(name, previousName: setName)
                             self.detailItem = name
                         }
                     }

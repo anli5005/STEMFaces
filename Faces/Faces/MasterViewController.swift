@@ -13,7 +13,7 @@ let docPath: String = {
     return url.absoluteString!.stringByReplacingOccurrencesOfString("file://", withString: "")
 }()
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, DetailControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
     var objects = [String]()
@@ -89,6 +89,7 @@ class MasterViewController: UITableViewController {
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
+                controller.delegate = self
             }
         }
     }
@@ -130,7 +131,23 @@ class MasterViewController: UITableViewController {
                 presentViewController(alert, animated: true, completion: nil)
             }
         } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+            insertNewObject(self)
+        }
+    }
+    
+    // MARK: Detail Controller Delegate
+    func didRenameSetTo(newName: String, previousName: String) {
+        tableView.reloadData()
+        var index: Int?
+        for (anIndex, object) in enumerate(objects) {
+            if object == previousName {
+                index = anIndex
+                break
+            }
+        }
+        if let tIndex = index {
+            objects[tIndex] = newName
+            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: tIndex, inSection: 0)], withRowAnimation: .Fade)
         }
     }
 

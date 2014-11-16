@@ -87,7 +87,7 @@ class FlashcardViewController: UIViewController {
     func refreshData() {
         numberLabel.text = "\(currentFaceIndex + 1) of \(shuffledFaces.count)"
         
-        nameLabel.text = revealed || alwaysShowName ? shuffledFaces[currentFaceIndex]["name"] as String : ((currentFaceIndex < 1) ? "Tap Reveal to reveal the name" : "?")
+        nameLabel.text = revealed || alwaysShowName ? shuffledFaces[currentFaceIndex]["name"] as String : "Tap Reveal to reveal the name"
         
         nameLabel.textColor = !(revealed || alwaysShowName) ? UIColor.grayColor() : UIColor.blackColor()
         
