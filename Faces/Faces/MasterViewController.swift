@@ -62,13 +62,10 @@ class MasterViewController: UITableViewController {
                 var error: NSError?
                 let filePath = docPath.stringByAppendingPathComponent(name)
                 NSFileManager.defaultManager().createDirectoryAtPath(filePath, withIntermediateDirectories: false, attributes: nil, error: &error)
-                if error != nil {
-                    let errorView = UIAlertView()
-                    errorView.title = "Error"
-                    errorView.message = error!.localizedDescription
-                    errorView.addButtonWithTitle("OK")
-                    errorView.cancelButtonIndex = 0
-                    errorView.show()
+                if let theError = error {
+                    let errorView = UIAlertController(title: "Oops!", message: (errorAlerts[theError.code] ?? "There was a problem. (Error code \(theError.code))"), preferredStyle: .Alert)
+                    errorView.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+                    self.presentViewController(errorView, animated: true, completion: nil)
                 } else {
                     self.objects.insert(name, atIndex: 0)
                     let indexPath = NSIndexPath(forRow: 0, inSection: 0)

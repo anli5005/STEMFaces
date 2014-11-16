@@ -17,6 +17,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
     var detailItem: AnyObject? {
         didSet {
             // Update the view.
+            nameOfSet = detailItem as? String
             self.configureView()
         }
     }
@@ -33,7 +34,6 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             faces = []
         }
         if let detail = detailItem as? String {
-            nameOfSet = detail
             let fileManager = NSFileManager.defaultManager() // For easy access
             let setFolder = docPath.stringByAppendingPathComponent(detail)
             // Check for image folder
@@ -76,6 +76,34 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func renameSet() {
+        if nameOfSet != nil {
+            let promptControl = UIAlertController(title: "Rename Set", message: nil, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            promptControl.addAction(cancelAction)
+            promptControl.addAction(UIAlertAction(title: "Rename", style: UIAlertActionStyle.Default, handler: { (alertAction: UIAlertAction!) in
+                if let name = (promptControl.textFields![0] as UITextField).text {
+                    if let setName = nameOfSet {
+                        var error: NSError?
+                        let filePath = docPath.stringByAppendingPathComponent(setName)
+                        NSFileManager.defaultManager().moveItemAtPath(filePath, toPath: docPath.stringByAppendingPathComponent(name), error: &error)
+                        if error != nil {
+                            let errorView = UIAlertController(title: "Oops!", message: (errorAlerts[theError.code] ?? "There was a problem. (Error code \(theError.code))"), preferredStyle: .Alert)
+                            errorView.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+                            self.presentViewController(errorView, animated: true, completion: nil)
+                        } else {
+                            self.detailItem = name
+                        }
+                    }
+                }
+            }))
+            promptControl.addTextFieldWithConfigurationHandler({ (textField) in
+                
+            })
+            presentViewController(promptControl, animated: true, completion: {})
+        }
     }
     
     func insertNewObject() {
@@ -247,6 +275,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             } else {
                 cell.saveLabel.text = ""
             }
+            cell.renameButton.addTarget(self, action: "renameSet", forControlEvents: .TouchUpInside)
             return cell
     }
     
