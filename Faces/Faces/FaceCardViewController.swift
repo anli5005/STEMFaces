@@ -106,20 +106,24 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         // Initialize a UIAlertController
         let promptControl = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         promptControl.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        promptControl.addAction(UIAlertAction(title: "Browse Photo Library", style: UIAlertActionStyle.Default, handler: {
+        let browseAction = UIAlertAction(title: "Browse Photo Library", style: UIAlertActionStyle.Default, handler: {
             (alertAction: UIAlertAction!) in
             let controller = UIImagePickerController()
             controller.sourceType = .PhotoLibrary
             controller.delegate = self
             self.presentViewController(controller, animated: true, completion: {})
-        }))
-        promptControl.addAction(UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.Default, handler: {
-            (alertAction: UIAlertAction!) in
-            let controller = UIImagePickerController()
-            controller.sourceType = .Camera
-            controller.delegate = self
-            self.presentViewController(controller, animated: true, completion: {})
-        }))
+        })
+        browseAction.enabled = UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)
+        promptControl.addAction(browseAction)
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            promptControl.addAction(UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.Default, handler: {
+                (alertAction: UIAlertAction!) in
+                let controller = UIImagePickerController()
+                controller.sourceType = .Camera
+                controller.delegate = self
+                self.presentViewController(controller, animated: true, completion: {})
+            }))
+        }
         promptControl.popoverPresentationController?.sourceView = footerView.addButton
         promptControl.popoverPresentationController?.sourceRect = CGRect(x: CGRectGetMidX(footerView.addButton.frame), y: CGRectGetMidY(footerView.addButton.frame), width: 1, height: 1)
         presentViewController(promptControl, animated: true, completion: {})

@@ -91,7 +91,7 @@ class FlashcardViewController: UIViewController {
         
         nameLabel.textColor = !(revealed || alwaysShowName) ? UIColor.grayColor() : UIColor.blackColor()
         
-        nameLabel.font = (!(revealed || alwaysShowName) && currentFaceIndex < 1) ? nameLabel.font.fontWithSize(18) : nameLabel.font.fontWithSize(36)
+        nameLabel.font = !(revealed || alwaysShowName) ? nameLabel.font.fontWithSize(18) : nameLabel.font.fontWithSize(36)
         
         aboutLabel.text = (shuffledFaces[currentFaceIndex]["about"] as String)
         

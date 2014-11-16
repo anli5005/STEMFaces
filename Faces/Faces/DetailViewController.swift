@@ -11,6 +11,10 @@ import UIKit
 var faces = [[String: AnyObject]]()
 var nameOfSet: String?
 
+enum SetLoadError {
+    case None, FileLoading(NSError), SetJSON(NSError)
+}
+
 @objc protocol DetailControllerDelegate: NSObjectProtocol {
     optional func didRenameSetTo(newName: String, previousName: String)
 }
@@ -28,6 +32,8 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             self.configureView()
         }
     }
+    
+    var error = SetLoadError.None
     
     var creatingNewFace = false
     
