@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -16,32 +16,23 @@
                         <constraint firstAttribute="height" constant="44" id="h0O-Ry-QIq"/>
                     </constraints>
                     <items>
-                        <navigationItem title="Face Cards" id="TYj-Hz-raf">
-                            <barButtonItem key="leftBarButtonItem" title="Edit" id="x2m-gE-acb"/>
-                            <barButtonItem key="rightBarButtonItem" systemItem="add" id="AUF-ET-7Cq"/>
-                        </navigationItem>
+                        <navigationItem id="TYj-Hz-raf"/>
                     </items>
                 </navigationBar>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="App Icon for Faces Large.png" translatesAutoresizingMaskIntoConstraints="NO" id="C2z-1e-HQK">
-                    <rect key="frame" x="0.0" y="44" width="480" height="436"/>
-                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="atA-qk-pji">
+                    <rect key="frame" x="0.0" y="44" width="480" height="480"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="fQ1-zL-ayD" firstAttribute="leading" secondItem="C2z-1e-HQK" secondAttribute="leading" id="BWf-Cs-oIM"/>
-                <constraint firstItem="C2z-1e-HQK" firstAttribute="top" secondItem="fQ1-zL-ayD" secondAttribute="bottom" id="HUY-fX-DnG"/>
                 <constraint firstAttribute="trailing" secondItem="fQ1-zL-ayD" secondAttribute="trailing" id="NF9-zS-HxM"/>
                 <constraint firstItem="fQ1-zL-ayD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Q9F-xi-Gzk"/>
-                <constraint firstItem="C2z-1e-HQK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Urp-hH-aqz"/>
-                <constraint firstItem="fQ1-zL-ayD" firstAttribute="trailing" secondItem="C2z-1e-HQK" secondAttribute="trailing" id="ZMB-cl-hp1"/>
-                <constraint firstAttribute="bottom" secondItem="C2z-1e-HQK" secondAttribute="bottom" id="dAM-Sb-G2g"/>
+                <constraint firstItem="fQ1-zL-ayD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VOu-si-WXf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
-    <resources>
-        <image name="App Icon for Faces Large.png" width="1024" height="1024"/>
-    </resources>
 </document>

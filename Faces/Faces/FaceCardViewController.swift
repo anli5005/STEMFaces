@@ -55,7 +55,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     func configureView() {
         if let setName = parentController.detailItem as? String {
             if let detail = detailItem {
-                let setFolder = docPath.stringByAppendingPathComponent(setName)
+                let setFolder = docPath().stringByAppendingPathComponent(setName)
                 let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                 let fileManager = NSFileManager.defaultManager()
                 if !fileManager.fileExistsAtPath(imageFolder) {
@@ -147,7 +147,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
             }
             if let setName = parentController.detailItem as? String {
                 if let detail = detailItem {
-                    let setFolder = docPath.stringByAppendingPathComponent(setName)
+                    let setFolder = docPath().stringByAppendingPathComponent(setName)
                     let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                     let imageToSave = correctlyOrientedImage(image)
                     UIImageJPEGRepresentation(imageToSave, 0.5).writeToFile(imageFolder.stringByAppendingPathComponent("\(imageName).png"), atomically: true)
@@ -164,7 +164,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         func deleteHandler(action: UIAlertAction!) {
             if let detail = detailItem {
                 if let setName = parentController.detailItem as? String {
-                    let setFolder = docPath.stringByAppendingPathComponent(setName)
+                    let setFolder = docPath().stringByAppendingPathComponent(setName)
                     let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                     NSFileManager.defaultManager().removeItemAtPath(imageFolder, error: nil)
                     // Delete the images
@@ -194,7 +194,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         let cell = (collectionView.dequeueReusableCellWithReuseIdentifier("Face Image", forIndexPath: indexPath) as FaceImageCollectionViewCell)
         if let setName = parentController.detailItem as? String {
             if let detail = detailItem {
-                let setFolder = docPath.stringByAppendingPathComponent(setName)
+                let setFolder = docPath().stringByAppendingPathComponent(setName)
                 let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                 let filename = imageFolder.stringByAppendingPathComponent(imageList[indexPath.item])
                 if let theImage = UIImage(contentsOfFile: filename) {
@@ -261,7 +261,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                 func deleteHandler(action: UIAlertAction!) {
                     if let detail = detailItem {
                         if let setName = parentController.detailItem as? String {
-                            let setFolder = docPath.stringByAppendingPathComponent(setName)
+                            let setFolder = docPath().stringByAppendingPathComponent(setName)
                             let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[detail]["id"] as Int))
                             NSFileManager.defaultManager().removeItemAtPath(imageFolder.stringByAppendingPathComponent(imageList[indexPath.item]), error: nil)
                             imageList.removeAtIndex(indexPath.item)

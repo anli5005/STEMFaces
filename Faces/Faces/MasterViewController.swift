@@ -8,10 +8,10 @@
 
 import UIKit
 
-let docPath: String = {
+let docPath: () -> String = {
     let url = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last! as NSURL
     return url.absoluteString!.stringByReplacingOccurrencesOfString("file://", withString: "")
-}()
+}
 
 class MasterViewController: UITableViewController, DetailControllerDelegate {
 
@@ -31,7 +31,7 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         var error: NSError?
-        let fileList = NSFileManager.defaultManager().contentsOfDirectoryAtPath(docPath, error: &error) as [String]
+        let fileList = NSFileManager.defaultManager().contentsOfDirectoryAtPath(docPath(), error: &error) as [String]
         for file in fileList {
             if !file.hasPrefix(".") {
                 objects.append(file)
@@ -60,7 +60,7 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
         promptControl.addAction(UIAlertAction(title: "Add", style: UIAlertActionStyle.Default, handler: { (alertAction: UIAlertAction!) in
             if let name = (promptControl.textFields![0] as UITextField).text {
                 var error: NSError?
-                let filePath = docPath.stringByAppendingPathComponent(name)
+                let filePath = docPath().stringByAppendingPathComponent(name)
                 NSFileManager.defaultManager().createDirectoryAtPath(filePath, withIntermediateDirectories: false, attributes: nil, error: &error)
                 if let theError = error {
                     let errorView = UIAlertController(title: "Oops!", message: (errorAlerts[theError.code] ?? "There was a problem. (Error code \(theError.code))"), preferredStyle: .Alert)
@@ -121,7 +121,7 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             var error: NSError?
-            NSFileManager.defaultManager().removeItemAtPath(docPath.stringByAppendingPathComponent(objects[indexPath.row]), error: &error)
+            NSFileManager.defaultManager().removeItemAtPath(docPath().stringByAppendingPathComponent(objects[indexPath.row]), error: &error)
             if error == nil {
                 objects.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)

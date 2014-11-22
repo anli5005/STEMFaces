@@ -48,7 +48,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
         }
         if let detail = detailItem as? String {
             let fileManager = NSFileManager.defaultManager() // For easy access
-            let setFolder = docPath.stringByAppendingPathComponent(detail)
+            let setFolder = docPath().stringByAppendingPathComponent(detail)
             // Check for image folder
             var isDir: ObjCBool = false
             var exists = fileManager.fileExistsAtPath(setFolder.stringByAppendingPathComponent("Images"), isDirectory: &isDir)
@@ -62,13 +62,17 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             
             if !setLoaded && fileManager.fileExistsAtPath(setFolder.stringByAppendingPathComponent("Data.json")) {
                 // Load the face data
-                if let data = NSData(contentsOfFile: setFolder.stringByAppendingPathComponent("Data.json")) {
+                var readError: NSError?
+                if let data = NSData(contentsOfFile: setFolder.stringByAppendingPathComponent("Data.json"),  options: .DataReadingUncached, error: &readError) {
                     var error: NSError?
                     if let jsonObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as? [[String: AnyObject]] {
                         faces = jsonObject
                     } else {
                         println("Error parsing data: \(error!.localizedDescription)")
+                        self.error = .SetJSON(error!)
                     }
+                } else {
+                    self.error = .FileLoading(readError!)
                 }
             }
             setLoaded = true
@@ -100,8 +104,8 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
                 if let name = (promptControl.textFields![0] as UITextField).text {
                     if let setName = nameOfSet {
                         var error: NSError?
-                        let filePath = docPath.stringByAppendingPathComponent(setName)
-                        NSFileManager.defaultManager().moveItemAtPath(filePath, toPath: docPath.stringByAppendingPathComponent(name), error: &error)
+                        let filePath = docPath().stringByAppendingPathComponent(setName)
+                        NSFileManager.defaultManager().moveItemAtPath(filePath, toPath: docPath().stringByAppendingPathComponent(name), error: &error)
                         if let theError = error {
                             let errorView = UIAlertController(title: "Oops!", message: (errorAlerts[theError.code] ?? "There was a problem. (Error code \(theError.code))"), preferredStyle: .Alert)
                             errorView.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
@@ -156,7 +160,14 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        saveSet()
+        switch error {
+        case .None:
+            saveSet()
+        case .FileLoading, .SetJSON:
+            if !faces.isEmpty {
+                saveSet()
+            }
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -186,7 +197,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
                 _saveTimestamp = NSDate()
                 collectionView.reloadData()
             }
-            data?.writeToFile(docPath.stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), atomically: true)
+            data?.writeToFile(docPath().stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), atomically: true)
             return error
         } else {
             return nil
@@ -234,7 +245,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             
             // Setup the image
             if let detail = detailItem as? String {
-                let setFolder = docPath.stringByAppendingPathComponent(detail)
+                let setFolder = docPath().stringByAppendingPathComponent(detail)
                 let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(face["id"] as Int))
                 let fileManager = NSFileManager.defaultManager()
                 if fileManager.fileExistsAtPath(imageFolder) {
@@ -280,14 +291,27 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
         atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
             let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Set Info", forIndexPath: indexPath) as SetDetailReusableView
             cell.nameLabel.text = nameOfSet ?? ""
-            if let timestamp = saveTimestamp {
-                let format = NSDateFormatter()
-                format.dateStyle = .NoStyle
-                format.timeStyle = .ShortStyle
-                format.timeZone = NSTimeZone.defaultTimeZone()
-                cell.saveLabel.text = "Last saved \(format.stringFromDate(timestamp))"
-            } else {
-                cell.saveLabel.text = ""
+            switch error {
+            case .None:
+                cell.nameLabel.textColor = UIColor.blackColor()
+                cell.saveLabel.textColor = UIColor.lightGrayColor()
+                if let timestamp = saveTimestamp {
+                    let format = NSDateFormatter()
+                    format.dateStyle = .NoStyle
+                    format.timeStyle = .ShortStyle
+                    format.timeZone = NSTimeZone.defaultTimeZone()
+                    cell.saveLabel.text = "Last saved \(format.stringFromDate(timestamp))"
+                } else {
+                    cell.saveLabel.text = ""
+                }
+            case .FileLoading(let error):
+                cell.nameLabel.textColor = UIColor.redColor()
+                cell.saveLabel.textColor = UIColor.redColor()
+                cell.saveLabel.text = "Can't open the set. (\(error.code))"
+            case .SetJSON(let error):
+                cell.nameLabel.textColor = UIColor.redColor()
+                cell.saveLabel.textColor = UIColor.redColor()
+                cell.saveLabel.text = "Can't open the set. (\(error.code))"
             }
             cell.renameButton.addTarget(self, action: "renameSet", forControlEvents: .TouchUpInside)
             return cell

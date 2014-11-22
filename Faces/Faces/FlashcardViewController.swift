@@ -97,7 +97,7 @@ class FlashcardViewController: UIViewController {
         
         if !imageLoaded {
             if let setName = nameOfSet {
-                let setFolder = docPath.stringByAppendingPathComponent(setName)
+                let setFolder = docPath().stringByAppendingPathComponent(setName)
                 let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(shuffledFaces[currentFaceIndex]["id"] as Int))
                 let fileManager = NSFileManager.defaultManager()
                 if !fileManager.fileExistsAtPath(imageFolder) {
