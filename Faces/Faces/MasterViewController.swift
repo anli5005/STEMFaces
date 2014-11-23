@@ -54,7 +54,7 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
     }
 
     func insertNewObject(sender: AnyObject) {
-        let promptControl = UIAlertController(title: "Set Name", message: nil, preferredStyle: .Alert)
+        let promptControl = UIAlertController(title: "Set Name", message: "In Face Cards, a set is a group of faces.", preferredStyle: .Alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         promptControl.addAction(cancelAction)
         promptControl.addAction(UIAlertAction(title: "Add", style: UIAlertActionStyle.Default, handler: { (alertAction: UIAlertAction!) in
