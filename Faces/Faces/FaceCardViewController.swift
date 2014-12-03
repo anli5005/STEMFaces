@@ -49,7 +49,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         configureView()
-        collectionView.reloadData()
+        collectionView?.reloadData()
     }
     
     func configureView() {
@@ -98,7 +98,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                 face["about"] = aboutField.text
                 faces[detail] = face
             }
-            parentController?.collectionView.reloadData()
+            parentController?.collectionView?.reloadData()
         }
     }
     
@@ -155,7 +155,7 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
                 }
             }
             dismissViewControllerAnimated(true, {})
-            collectionView.reloadData()
+            collectionView?.reloadData()
     }
     
     func deleteFace(sender: AnyObject) {

@@ -80,7 +80,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             navigationItem.rightBarButtonItem = (nameOfSet == nil) ? nil : UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject")
             
             navigationItem.title = detail
-            collectionView.reloadData()
+            collectionView?.reloadData()
         }
     }
     
@@ -141,7 +141,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             // Add face to face array
             faces.append(face)
             // Reload collection view
-            collectionView.reloadData()
+            collectionView?.reloadData()
             // Perform segue
             var indexPath: NSIndexPath?
             for (aKey, aFace) in enumerate(faces) {
@@ -184,7 +184,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
     
     override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
         super.dismissViewControllerAnimated(flag, completion: completion)
-        collectionView.reloadData()
+        collectionView?.reloadData()
     }
     
     func saveSet() -> NSError? {
@@ -195,7 +195,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
                 println("Error making data: \(e.localizedDescription)")
             } else {
                 _saveTimestamp = NSDate()
-                collectionView.reloadData()
+                collectionView?.reloadData()
             }
             data?.writeToFile(docPath().stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), atomically: true)
             return error

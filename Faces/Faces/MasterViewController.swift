@@ -109,7 +109,7 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
 
         let object = objects[indexPath.row] as String
-        cell.textLabel.text = object.lastPathComponent
+        cell.textLabel?.text = object.lastPathComponent
         return cell
     }
 
