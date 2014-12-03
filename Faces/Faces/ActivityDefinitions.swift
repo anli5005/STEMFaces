@@ -8,7 +8,7 @@
 
 import Foundation
 
-let activities = [
+let activities: [[String: String]] = [
     [
         "Name": "Flash Cards",
         "Detail": "Learn in a flash!",

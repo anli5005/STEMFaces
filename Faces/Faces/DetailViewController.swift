@@ -295,15 +295,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             case .None:
                 cell.nameLabel.textColor = UIColor.blackColor()
                 cell.saveLabel.textColor = UIColor.lightGrayColor()
-                if let timestamp = saveTimestamp {
-                    let format = NSDateFormatter()
-                    format.dateStyle = .NoStyle
-                    format.timeStyle = .ShortStyle
-                    format.timeZone = NSTimeZone.defaultTimeZone()
-                    cell.saveLabel.text = "Last saved \(format.stringFromDate(timestamp))"
-                } else {
-                    cell.saveLabel.text = ""
-                }
+                cell.saveLabel.text = "\(faces.count) faces"
             case .FileLoading(let error):
                 cell.nameLabel.textColor = UIColor.redColor()
                 cell.saveLabel.textColor = UIColor.redColor()
