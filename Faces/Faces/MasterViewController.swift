@@ -14,11 +14,12 @@ let docPath: () -> String = {
 }
 
 class MasterViewController: UITableViewController, DetailControllerDelegate {
-
+    
     var detailViewController: DetailViewController? = nil
     var objects = [String]()
-
-
+    
+    private let options = ["About", "Rate", "Support"]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
@@ -26,7 +27,7 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
             self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -39,7 +40,7 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
         }
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
         self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
@@ -47,12 +48,12 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func insertNewObject(sender: AnyObject) {
         let promptControl = UIAlertController(title: "Set Name", message: "In Face Cards, a set is a group of faces.", preferredStyle: .Alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
@@ -75,49 +76,60 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
         }))
         promptControl.addTextFieldWithConfigurationHandler({ (textField) in
             
-            })
+        })
         presentViewController(promptControl, animated: true, completion: {})
     }
-
+    
     // MARK: - Segues
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = objects[indexPath.row] as String
-                let controller = (segue.destinationViewController as UINavigationController).topViewController as DetailViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
-                controller.delegate = self
+                if indexPath.section == 1 {
+                    
+                } else {
+                    let object = objects[indexPath.row] as String
+                    let controller = (segue.destinationViewController as UINavigationController).topViewController as DetailViewController
+                    controller.detailItem = object
+                    controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                    controller.navigationItem.leftItemsSupplementBackButton = true
+                    controller.delegate = self
+                }
             }
         }
     }
-
+    
     // MARK: - Table View
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         var error: NSError?
-        return 1
+        return 2
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return section == 1 ? options.count : objects.count
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-
-        let object = objects[indexPath.row] as String
-        cell.textLabel?.text = object.lastPathComponent
-        return cell
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+            let object = options[indexPath.row]
+            cell.textLabel?.text = object.lastPathComponent
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+            
+            let object = objects[indexPath.row] as String
+            cell.textLabel?.text = object.lastPathComponent
+            return cell
+        }
     }
-
+    
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             var error: NSError?
@@ -150,7 +162,7 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
             tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: tIndex, inSection: 0)], withRowAnimation: .Fade)
         }
     }
-
-
+    
+    
 }
 
