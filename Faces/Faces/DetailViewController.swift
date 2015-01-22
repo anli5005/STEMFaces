@@ -238,10 +238,10 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             
             // Configure the cell with the face details.
             let face = faces[indexPath.item]
-            cell.label?.text = (face["name"] as String)
+            cell.text = (face["name"] as String)
             
             // Reset the image
-            cell.image?.image = nil
+            cell.image = nil
             
             // Setup the image
             if let detail = detailItem as? String {
@@ -260,7 +260,9 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
                             return in1.stringByDeletingPathExtension.toInt()! < in2.stringByDeletingPathExtension.toInt()!
                         }
                         let imagePath = imageFolder.stringByAppendingPathComponent(imageList[0])
-                        cell.image?.image = UIImage(contentsOfFile: imagePath)
+                        let image = UIImage(contentsOfFile: imagePath)
+                        cell.image = image
+                        println("Hi there!") // TODO: Remove annoying log messages
                     }
                 }
             }
@@ -314,12 +316,20 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
         if indexPath.section == 0 {
             return CGSize(width: 158, height: 87)
         } else {
-            return CGSize(width: 130, height: 147)
+            return CGSize(width: UIScreen.mainScreen().bounds.size.width / 3, height: 147)
         }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return (section == 0) ? UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) : UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        if section == 0 {
+            return 10
+        } else {
+            return 0
+        }
     }
     
     func collectionView(collectionView: UICollectionView,
