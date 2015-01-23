@@ -8,23 +8,30 @@
 
 import UIKit
 
+/** A list of faces in the set. */
 var faces = [[String: AnyObject]]()
+/** The set name */
 var nameOfSet: String?
 
 enum SetLoadError {
     case None, FileLoading(NSError), SetJSON(NSError)
 }
 
+/** Used to notify that a set has been renamed. */
 @objc protocol DetailControllerDelegate: NSObjectProtocol {
+    /** Called when a set is renamed. */
     optional func didRenameSetTo(newName: String, previousName: String)
 }
 
+/** A grid of faces in a set with activity selection. */
 class DetailViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FaceCardControllerDelegate {
     
+    /** The delegate of this DetailViewController. */
     weak var delegate: DetailControllerDelegate?
     
     private var setLoaded = false
     
+    /** The set name; use nameOfSet instead */
     var detailItem: AnyObject? {
         didSet {
             // Update the view.

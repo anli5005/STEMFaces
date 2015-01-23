@@ -8,14 +8,17 @@
 
 import UIKit
 
+/** Gets the folder path where documents are stored. */
 let docPath: () -> String = {
     let url = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last! as NSURL
     return url.absoluteString!.stringByReplacingOccurrencesOfString("file://", withString: "")
 }
 
+/** The set selection, creation, and deletion screen. */
 class MasterViewController: UITableViewController, DetailControllerDelegate {
     
     var detailViewController: DetailViewController? = nil
+    /** A list of sets currently shown on the table view. */
     var objects = [String]()
     
     private let options = ["About", "Rate", "Support"]
@@ -54,6 +57,7 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    /** Creates a new set. */
     func insertNewObject(sender: AnyObject) {
         let promptControl = UIAlertController(title: "Set Name", message: "In Face Cards, a set is a group of faces.", preferredStyle: .Alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
