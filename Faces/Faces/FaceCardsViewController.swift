@@ -33,7 +33,7 @@ class FaceCardsViewController: UIPageViewController, UIPageViewControllerDataSou
         navigationItem.rightBarButtonItem = self.editButtonItem()
         self.dataSource = self
         self.delegate   = self
-        // self.showFaceCardAtIndex(0)
+        applyScrollInsetsTo(self.viewControllers[0].collectionView)
         // Do any additional setup after loading the view.
     }
 
