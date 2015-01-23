@@ -28,6 +28,8 @@
 		4ABA739F1A144CE90097C1A0 /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA739E1A144CE90097C1A0 /* PlayView.swift */; };
 		4AD568AB19FD363300EA2234 /* ButtonCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */; };
 		4AD568AD19FD363F00EA2234 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */; };
+		4AE15C781A72EF230092BAF2 /* MatchingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE15C771A72EF230092BAF2 /* MatchingCollectionViewCell.swift */; };
+		4AE15C7A1A72F0410092BAF2 /* MatchingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE15C791A72F0410092BAF2 /* MatchingCollectionViewController.swift */; };
 		4AFD3C431A0D52BF00A6E00F /* BorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFD3C421A0D52BF00A6E00F /* BorderButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,8 @@
 		4ABA739E1A144CE90097C1A0 /* PlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
 		4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCollectionReusableView.swift; sourceTree = "<group>"; };
 		4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		4AE15C771A72EF230092BAF2 /* MatchingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchingCollectionViewCell.swift; sourceTree = "<group>"; };
+		4AE15C791A72F0410092BAF2 /* MatchingCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchingCollectionViewController.swift; sourceTree = "<group>"; };
 		4AFD3C421A0D52BF00A6E00F /* BorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */,
+				4AE15C771A72EF230092BAF2 /* MatchingCollectionViewCell.swift */,
 				4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */,
 				4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */,
 				4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */,
@@ -181,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				4A7A26C81A0D2120008238CC /* FlashcardViewController.swift */,
+				4AE15C791A72F0410092BAF2 /* MatchingCollectionViewController.swift */,
 			);
 			name = Activities;
 			sourceTree = "<group>";
@@ -306,10 +312,12 @@
 				4AA23CE81A0084090073739D /* DetailFooterCollectionReusableView.swift in Sources */,
 				4AACA9CF19FC930200880E86 /* FaceImageCollectionViewCell.swift in Sources */,
 				4AD568AB19FD363300EA2234 /* ButtonCollectionReusableView.swift in Sources */,
+				4AE15C781A72EF230092BAF2 /* MatchingCollectionViewCell.swift in Sources */,
 				4A2779E719F494D500E6BEE8 /* AppDelegate.swift in Sources */,
 				4AA728411A71C81D00989842 /* FaceCardsViewController.swift in Sources */,
 				4ABA739F1A144CE90097C1A0 /* PlayView.swift in Sources */,
 				4AACA9CD19FC8F3200880E86 /* FaceCardViewController.swift in Sources */,
+				4AE15C7A1A72F0410092BAF2 /* MatchingCollectionViewController.swift in Sources */,
 				4A9A68501A0AE1B700D89597 /* ActivityDefinitions.swift in Sources */,
 				4AFD3C431A0D52BF00A6E00F /* BorderButton.swift in Sources */,
 				4A44BF901A15837500D03E0D /* SetDetailReusableView.swift in Sources */,

@@ -33,6 +33,8 @@ class FaceCardsViewController: UIPageViewController, UIPageViewControllerDataSou
         navigationItem.rightBarButtonItem = self.editButtonItem()
         self.dataSource = self
         self.delegate   = self
+        self.view.backgroundColor = UIColor.whiteColor()
+        
         applyScrollInsetsTo(self.viewControllers[0].collectionView)
         // Do any additional setup after loading the view.
     }

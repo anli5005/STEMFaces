@@ -32,6 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as UINavigationController
         navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
+        
+        let a = UIPageControl.appearance()
+        a.backgroundColor = UIColor.whiteColor()
+        a.currentPageIndicatorTintColor = UIColor.blackColor()
+        a.pageIndicatorTintColor = UIColor(white: 0.65, alpha: 1)
+        
         return true
     }
 

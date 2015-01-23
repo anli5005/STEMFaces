@@ -269,7 +269,6 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
                         let imagePath = imageFolder.stringByAppendingPathComponent(imageList[0])
                         let image = UIImage(contentsOfFile: imagePath)
                         cell.image = image
-                        println("Hi there!") // TODO: Remove annoying log messages
                     }
                 }
             }
