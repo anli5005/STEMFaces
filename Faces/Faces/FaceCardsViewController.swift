@@ -76,6 +76,13 @@ class FaceCardsViewController: UIPageViewController, UIPageViewControllerDataSou
         }
     }
     
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return faces.count
+    }
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return (viewControllers[0] as FaceCardViewController).detailItem ?? 0
+    }
+    
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         for v in self.viewControllers {
