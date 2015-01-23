@@ -13,13 +13,11 @@ let activities: [[String: String]] = [
         "Name": "Flash Cards",
         "Detail": "Learn in a flash!",
         "Segue-ID": "activity-flashcard"
-    ]/*,
+    ],
     [
         "Name": "Matching",
         "Detail": "Match faces!",
-        "Segue-ID": ""
+        "Segue-ID": "activity-matching"
         // Matching activity - Match faces!
-        // Segue ID: ?
-        // TODO: Put segue for matching inside
-    ] */ // This crashes
+    ]
 ]
