@@ -20,15 +20,18 @@ private class FaceCardTextOverlay: UIView {
         
         // Draw text
         if let t = text {
-            let s = NSShadow()
-            s.shadowOffset = CGSize(width: 5, height: 5)
-            s.shadowBlurRadius = 10
-            let f = UIFont(name: "Helvetica Neue", size: 16)
-            let c = UIColor.whiteColor()
-            var attr = [String: AnyObject]()
-            attr[NSShadowAttributeName!] = s
+            let s              = NSShadow()
+            s.shadowOffset     = CGSize(width: 2, height: 2)
+            s.shadowBlurRadius = 5
+            s.shadowColor      = UIColor.blackColor()
+            let f              = UIFont(name: "Helvetica Neue", size: 16)
+            let c              = UIColor.whiteColor()
+            var attr           = [String: AnyObject]()
+            
+            attr[NSShadowAttributeName!]          = s
             attr[NSForegroundColorAttributeName!] = c
-            attr[NSFontAttributeName!] = f
+            attr[NSFontAttributeName!]            = f
+            
             let a = NSAttributedString(string: t, attributes: attr)
             
             let w = a.size().width

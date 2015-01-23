@@ -173,10 +173,9 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         if (segue.identifier ?? "") == "showCard" {
-            let dest = (segue.destinationViewController as UINavigationController).topViewController as FaceCardViewController
+            let dest = (segue.destinationViewController as UINavigationController).topViewController as FaceCardsViewController
             dest.parentController = self
-            dest.delegate = self
-            dest.detailItem = (sender as NSIndexPath).item
+            dest.showFaceCardAtIndex((sender as NSIndexPath).item)
             dest.setEditing(creatingNewFace, animated: true)
             creatingNewFace = false
         }
@@ -196,8 +195,9 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             } else {
                 _saveTimestamp = NSDate()
                 collectionView?.reloadData()
+                data?.writeToFile(docPath().stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), options: NSDataWritingOptions.AtomicWrite, error: &error)
+                println(error == nil ? "Saved set" : "Error saving data: \(error!.localizedDescription)")
             }
-            data?.writeToFile(docPath().stringByAppendingPathComponent(detail).stringByAppendingPathComponent("Data.json"), atomically: true)
             return error
         } else {
             return nil
@@ -316,7 +316,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
         if indexPath.section == 0 {
             return CGSize(width: 158, height: 87)
         } else {
-            return CGSize(width: UIScreen.mainScreen().bounds.size.width / 3, height: 147)
+            return CGSize(width: self.view.frame.size.width / 3, height: 147)
         }
     }
     
@@ -332,6 +332,14 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
         }
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        if section == 0 {
+            return 10
+        } else {
+            return 0
+        }
+    }
+    
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -340,6 +348,11 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             } else {
                 return CGSize(width: 0, height: 0)
             }
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        collectionView?.reloadData()
     }
     
     // MARK: Face Card Controller Delegate

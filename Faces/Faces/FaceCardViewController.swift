@@ -94,9 +94,11 @@ class FaceCardViewController: UICollectionViewController, UIImagePickerControlle
         if let detail = detailItem {
             if !deleted {
                 var face = faces[detail]
-                face["name"] = nameField.text
-                face["about"] = aboutField.text
-                faces[detail] = face
+                if let n = nameField {
+                    face["name"] = nameField.text
+                    face["about"] = aboutField.text
+                    faces[detail] = face
+                }
             }
             parentController?.collectionView?.reloadData()
         }
