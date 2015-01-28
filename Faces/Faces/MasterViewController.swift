@@ -105,6 +105,10 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
     
     // MARK: - Table View
     
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return ["Sets", "More"][section]
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         var error: NSError?
         return 2

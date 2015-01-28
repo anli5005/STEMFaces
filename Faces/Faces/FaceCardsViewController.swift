@@ -24,11 +24,20 @@ class FaceCardsViewController: UIPageViewController, UIPageViewControllerDataSou
     }
     
     private func applyScrollInsetsTo(scrollView: UIScrollView?) {
-        let navbarHeight = self.navigationController!.navigationBar.frame.size.height
+        var navbarHeight = self.navigationController!.navigationBar.frame.size.height
+        if self.prefersStatusBarHidden() {
+            navbarHeight -= UIApplication.sharedApplication().statusBarFrame.size.width
+        }
         scrollView?.contentInset = UIEdgeInsetsMake(navbarHeight + 20, 0, 0, 0)
     }
+    
+    private func recalculateScrollInsets() {
+        for v in (self.viewControllers) as [UICollectionViewController!] {
+            self.applyScrollInsetsTo(v.collectionView)
+        }
+    }
 
-    override func viewDidLoad() {
+    override func viewDidLoad() {        
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = self.editButtonItem()
         self.dataSource = self
@@ -91,5 +100,4 @@ class FaceCardsViewController: UIPageViewController, UIPageViewControllerDataSou
             (v as UIViewController).setEditing(editing, animated: animated)
         }
     }
-
 }

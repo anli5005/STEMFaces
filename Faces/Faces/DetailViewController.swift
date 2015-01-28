@@ -93,6 +93,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionViewSize = view.frame.size
         // Do any additional setup after loading the view
         self.configureView()
     }
@@ -317,17 +318,19 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             return cell
     }
     
+    private var collectionViewSize = CGSize(width: 0, height: 0)
+    
     // MARK: Collection View Flow Layout
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
             return CGSize(width: 158, height: 87)
         } else {
-            return CGSize(width: self.view.frame.size.width / 3, height: 147)
+            return CGSize(width: self.collectionViewSize.width / 3, height: 192)
         }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return (section == 0) ? UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) : UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return section == 0 ? UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) : UIEdgeInsetsZero
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -339,11 +342,7 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        if section == 0 {
-            return 10
-        } else {
-            return 0
-        }
+        return 10
     }
     
     func collectionView(collectionView: UICollectionView,
@@ -356,15 +355,16 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
             }
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        collectionView?.reloadData()
-    }
-    
-    // MARK: Face Card Controller Delegate
+    // MARK: Other Things
     
     func shouldDismissController(controller: FaceCardViewController) {
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        self.collectionViewSize = size
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        collectionView?.reloadData()
     }
 }
 

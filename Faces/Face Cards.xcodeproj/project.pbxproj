@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A238A1F1A72F4CD00855756 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A238A1E1A72F4CD00855756 /* LaunchScreen.storyboard */; };
 		4A24E7421A1193FA00C6B959 /* App Icon for Faces Large.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A24E7411A1193FA00C6B959 /* App Icon for Faces Large.png */; };
 		4A2779E719F494D500E6BEE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779E619F494D500E6BEE8 /* AppDelegate.swift */; };
 		4A2779E919F494D500E6BEE8 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779E819F494D500E6BEE8 /* MasterViewController.swift */; };
 		4A2779EB19F494D500E6BEE8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779EA19F494D500E6BEE8 /* DetailViewController.swift */; };
 		4A2779F019F494D500E6BEE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A2779EF19F494D500E6BEE8 /* Images.xcassets */; };
-		4A2779F319F494D500E6BEE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2779F119F494D500E6BEE8 /* LaunchScreen.xib */; };
 		4A2779FF19F494D500E6BEE8 /* FacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2779FE19F494D500E6BEE8 /* FacesTests.swift */; };
 		4A3BF71B19FDD46A0035C5AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A3BF71919FDD46A0035C5AD /* Main.storyboard */; };
 		4A44BF901A15837500D03E0D /* SetDetailReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44BF8F1A15837500D03E0D /* SetDetailReusableView.swift */; };
@@ -44,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A238A1E1A72F4CD00855756 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A24E7411A1193FA00C6B959 /* App Icon for Faces Large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon for Faces Large.png"; sourceTree = "<group>"; };
 		4A2779E119F494D500E6BEE8 /* Face Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Face Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2779E519F494D500E6BEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		4A2779E819F494D500E6BEE8 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		4A2779EA19F494D500E6BEE8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4A2779EF19F494D500E6BEE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		4A2779F219F494D500E6BEE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4A2779F819F494D500E6BEE8 /* Face CardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Face CardsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2779FD19F494D500E6BEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A2779FE19F494D500E6BEE8 /* FacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacesTests.swift; sourceTree = "<group>"; };
@@ -93,6 +93,92 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A238A151A72F3B400855756 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4A24E7411A1193FA00C6B959 /* App Icon for Faces Large.png */,
+				4A2779EF19F494D500E6BEE8 /* Images.xcassets */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		4A238A161A72F3BD00855756 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				4AFD3C421A0D52BF00A6E00F /* BorderButton.swift */,
+				4ABA739E1A144CE90097C1A0 /* PlayView.swift */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		4A238A171A72F3D100855756 /* Main View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4A2779E819F494D500E6BEE8 /* MasterViewController.swift */,
+				4A2779EA19F494D500E6BEE8 /* DetailViewController.swift */,
+				4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */,
+				4AA728401A71C81D00989842 /* FaceCardsViewController.swift */,
+			);
+			name = "Main View Controllers";
+			sourceTree = "<group>";
+		};
+		4A238A181A72F3E800855756 /* Matching */ = {
+			isa = PBXGroup;
+			children = (
+				4AE15C791A72F0410092BAF2 /* MatchingCollectionViewController.swift */,
+				4AE15C771A72EF230092BAF2 /* MatchingCollectionViewCell.swift */,
+			);
+			name = Matching;
+			sourceTree = "<group>";
+		};
+		4A238A191A72F3F000855756 /* Flash Cards */ = {
+			isa = PBXGroup;
+			children = (
+				4A7A26C81A0D2120008238CC /* FlashcardViewController.swift */,
+			);
+			name = "Flash Cards";
+			sourceTree = "<group>";
+		};
+		4A238A1A1A72F3FF00855756 /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+				4A238A191A72F3F000855756 /* Flash Cards */,
+				4A238A181A72F3E800855756 /* Matching */,
+				4A9A684F1A0AE1B700D89597 /* ActivityDefinitions.swift */,
+			);
+			name = Activities;
+			sourceTree = "<group>";
+		};
+		4A238A1B1A72F47F00855756 /* Collection View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */,
+				4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */,
+				4A9A684C1A0AE0C500D89597 /* ActivityCollectionViewCell.swift */,
+			);
+			name = "Collection View Cells";
+			sourceTree = "<group>";
+		};
+		4A238A1C1A72F48B00855756 /* Collection Resuable Views */ = {
+			isa = PBXGroup;
+			children = (
+				4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */,
+				4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */,
+				4AA23CE71A0084090073739D /* DetailFooterCollectionReusableView.swift */,
+				4A44BF8F1A15837500D03E0D /* SetDetailReusableView.swift */,
+			);
+			name = "Collection Resuable Views";
+			sourceTree = "<group>";
+		};
+		4A238A1D1A72F49600855756 /* Collection View Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4A238A1B1A72F47F00855756 /* Collection View Cells */,
+				4A238A1C1A72F48B00855756 /* Collection Resuable Views */,
+			);
+			name = "Collection View Classes";
+			sourceTree = "<group>";
+		};
 		4A2779D819F494D500E6BEE8 = {
 			isa = PBXGroup;
 			children = (
@@ -115,19 +201,15 @@
 		4A2779E319F494D500E6BEE8 /* Faces */ = {
 			isa = PBXGroup;
 			children = (
-				4A24E7411A1193FA00C6B959 /* App Icon for Faces Large.png */,
-				4AFD3C411A0D52AC00A6E00F /* Views */,
-				4A2779E619F494D500E6BEE8 /* AppDelegate.swift */,
-				4A2779E819F494D500E6BEE8 /* MasterViewController.swift */,
-				4A2779EA19F494D500E6BEE8 /* DetailViewController.swift */,
-				4AACA9CC19FC8F3200880E86 /* FaceCardViewController.swift */,
-				4AA728401A71C81D00989842 /* FaceCardsViewController.swift */,
+				4A238A151A72F3B400855756 /* Images */,
+				4A238A161A72F3BD00855756 /* Custom Views */,
+				4A238A171A72F3D100855756 /* Main View Controllers */,
+				4A238A1A1A72F3FF00855756 /* Activities */,
+				4A238A1D1A72F49600855756 /* Collection View Classes */,
 				4A3BF71919FDD46A0035C5AD /* Main.storyboard */,
-				4ADD5C961A0BE9E4004C3332 /* Activities */,
-				4A2779EF19F494D500E6BEE8 /* Images.xcassets */,
-				4A2779F119F494D500E6BEE8 /* LaunchScreen.xib */,
-				4A9A68521A0AE2E100D89597 /* Collection View Stuff */,
-				4A9A684E1A0AE1A300D89597 /* Assets */,
+				4A2779E619F494D500E6BEE8 /* AppDelegate.swift */,
+				4A238A1E1A72F4CD00855756 /* LaunchScreen.storyboard */,
+				4A9C2B001A180F3300B15504 /* AlertDefinitions.swift */,
 				4A2779E419F494D500E6BEE8 /* Supporting Files */,
 			);
 			path = Faces;
@@ -156,48 +238,6 @@
 				4A2779FD19F494D500E6BEE8 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		4A9A684E1A0AE1A300D89597 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				4A9A684F1A0AE1B700D89597 /* ActivityDefinitions.swift */,
-				4A9C2B001A180F3300B15504 /* AlertDefinitions.swift */,
-			);
-			name = Assets;
-			sourceTree = "<group>";
-		};
-		4A9A68521A0AE2E100D89597 /* Collection View Stuff */ = {
-			isa = PBXGroup;
-			children = (
-				4A820E1B19FC146600B77B82 /* FaceCardCollectionViewCell.swift */,
-				4AE15C771A72EF230092BAF2 /* MatchingCollectionViewCell.swift */,
-				4AACA9CE19FC930200880E86 /* FaceImageCollectionViewCell.swift */,
-				4AD568AA19FD363300EA2234 /* ButtonCollectionReusableView.swift */,
-				4AD568AC19FD363F00EA2234 /* HeaderCollectionReusableView.swift */,
-				4AA23CE71A0084090073739D /* DetailFooterCollectionReusableView.swift */,
-				4A9A684C1A0AE0C500D89597 /* ActivityCollectionViewCell.swift */,
-				4A44BF8F1A15837500D03E0D /* SetDetailReusableView.swift */,
-			);
-			name = "Collection View Stuff";
-			sourceTree = "<group>";
-		};
-		4ADD5C961A0BE9E4004C3332 /* Activities */ = {
-			isa = PBXGroup;
-			children = (
-				4A7A26C81A0D2120008238CC /* FlashcardViewController.swift */,
-				4AE15C791A72F0410092BAF2 /* MatchingCollectionViewController.swift */,
-			);
-			name = Activities;
-			sourceTree = "<group>";
-		};
-		4AFD3C411A0D52AC00A6E00F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				4AFD3C421A0D52BF00A6E00F /* BorderButton.swift */,
-				4ABA739E1A144CE90097C1A0 /* PlayView.swift */,
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,8 +322,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A3BF71B19FDD46A0035C5AD /* Main.storyboard in Resources */,
+				4A238A1F1A72F4CD00855756 /* LaunchScreen.storyboard in Resources */,
 				4A24E7421A1193FA00C6B959 /* App Icon for Faces Large.png in Resources */,
-				4A2779F319F494D500E6BEE8 /* LaunchScreen.xib in Resources */,
 				4A2779F019F494D500E6BEE8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,14 +383,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4A2779F119F494D500E6BEE8 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4A2779F219F494D500E6BEE8 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 		4A3BF71919FDD46A0035C5AD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
