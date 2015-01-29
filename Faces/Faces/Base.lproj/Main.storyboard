@@ -451,7 +451,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gpt-RA-NcX">
-                                            <rect key="frame" x="0.0" y="30" width="183" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="22.5" width="175" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -460,13 +460,13 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Gpt-RA-NcX" secondAttribute="trailing" constant="-8" id="1p1-0f-e3f"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Gpt-RA-NcX" secondAttribute="trailing" id="1p1-0f-e3f"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="gFr-BG-9Ed" secondAttribute="trailing" constant="-8" id="DV3-Lx-9A7"/>
                                     <constraint firstItem="Gpt-RA-NcX" firstAttribute="leading" secondItem="RCM-8j-PTO" secondAttribute="leadingMargin" constant="-8" id="G1t-tL-gig"/>
                                     <constraint firstItem="gFr-BG-9Ed" firstAttribute="top" secondItem="RCM-8j-PTO" secondAttribute="topMargin" constant="-8" id="MBS-ap-heA"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="gFr-BG-9Ed" secondAttribute="bottom" constant="-8" id="dkI-cT-2yp"/>
                                     <constraint firstItem="gFr-BG-9Ed" firstAttribute="leading" secondItem="RCM-8j-PTO" secondAttribute="leadingMargin" constant="-8" id="fu0-2V-kWm"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="Gpt-RA-NcX" secondAttribute="bottom" constant="-8" id="xUi-4z-Ybk"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Gpt-RA-NcX" secondAttribute="bottom" id="xUi-4z-Ybk"/>
                                 </constraints>
                                 <size key="customSize" width="183" height="51"/>
                                 <connections>

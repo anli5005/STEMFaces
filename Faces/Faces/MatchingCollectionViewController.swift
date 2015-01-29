@@ -43,7 +43,7 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
                     (rand() % 2) == 1
             })
         }
-        cells = [Int](cells[0..<(numberOfFaces)])
+        cells = [Int](randomSort(cells)[0..<(numberOfFaces)])
         let textCells = randomSort(cells)
         let imageCells = randomSort(cells)
         var textI = 0; var imageI = 0
@@ -65,7 +65,7 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         return faces.count >= 4 ? 4 : faces.count
         }()
     
-    var _cellDescriptions: ([MatchingCollectionViewCell.MatchingCellType], [Int])?
+    private var _cellDescriptions: ([MatchingCollectionViewCell.MatchingCellType], [Int])?
     var cellDescriptions: ([MatchingCollectionViewCell.MatchingCellType], [Int]) {
         if _cellDescriptions == nil {
             _cellDescriptions = self.generateCellDescriptions()
@@ -79,6 +79,10 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         return a
         }()
     var disabledCells = [Int]()
+    var correctCells = [Int]()
+    var incorrectCells = [Int]()
+    
+    var startDate = NSDate()
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -95,6 +99,13 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         // Configure the cell
         cell.personId = cellDescriptions.1[indexPath.item]
         cell.refreshFaceData()
+        cell.userCorrect = contains(correctCells, indexPath.item) ? true : (contains(incorrectCells, indexPath.item) ? false : nil)
+        if contains(incorrectCells, indexPath.item) {
+            incorrectCells.removeAtIndex(find(incorrectCells, indexPath.item)!)
+            // Schedule a timer to hide the choices
+            NSTimer.scheduledTimerWithTimeInterval(2, target: cell, selector: "hideUserScore:", userInfo: nil, repeats: false)
+        }
+        cell.elementSelected = contains(selectedCells, indexPath.item)
         
         // Add an image if possible
         if cell.getCellType() == .Image {
@@ -132,6 +143,8 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
             cell.backgroundColor = UIColor(white: 0.75, alpha: 1)
         }
         
+        cell.elementDisabled = contains(disabledCells, indexPath.item)
+        
         return cell
     }
     
@@ -157,20 +170,28 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
                     let cView: UICollectionView = self.collectionView!
                     let cCell = cView.cellForItemAtIndexPath(NSIndexPath(forItem: selectedCells[0], inSection: 0))!
                     let otherCell = cCell as MatchingCollectionViewCell
-                    cell.elementSelected = false
-                    otherCell.elementSelected = false
-                    // Check the indexes of the faces
-                    cell.userCorrect = (cell.personId == otherCell.personId)
-                    otherCell.userCorrect = (cell.personId == otherCell.personId)
-                    if cell.userCorrect! == true {
-                        disabledCells.extend(selectedCells)
+                    if cell.getCellType() != otherCell.getCellType() {
+                        // Check the indexes of the faces
+                        if (cell.personId == otherCell.personId) {
+                            disabledCells.extend(selectedCells)
+                            correctCells.extend(selectedCells)
+                        } else {
+                            incorrectCells.extend(selectedCells)
+                        }
+                        
+                        let indexPaths = [NSIndexPath(forItem: selectedCells[0], inSection: 0), NSIndexPath(forItem: selectedCells[1], inSection: 0)]
+                        
+                        selectedCells = []
+                        
+                        self.collectionView?.reloadItemsAtIndexPaths(indexPaths)
+                        
+                        if correctCells.count >= 2 * numberOfFaces {
+                            fanfare()
+                        }
                     } else {
-                        // Schedule a timer to hide the choices
-                        NSTimer.scheduledTimerWithTimeInterval(2, target: cell, selector: "hideUserScore:", userInfo: nil, repeats: false)
-                        NSTimer.scheduledTimerWithTimeInterval(2, target: otherCell, selector: "hideUserScore:", userInfo: nil, repeats: false)
+                        selectedCells.removeLast()
+                        cell.elementSelected = false
                     }
-                    
-                    selectedCells = []
                 }
             } else {
                 selectedCells.removeLast()
@@ -188,5 +209,26 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         self.collectionViewSize = size
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         collectionView?.reloadData()
+    }
+    
+    func fanfare() {
+        let finishDate = NSDate()
+        let timeInterval = finishDate.timeIntervalSinceDate(startDate)
+        
+        let fanfare = "You finished in \(round(timeInterval * 100) / 100) seconds!"
+        
+        let alert = UIAlertController(title: "Congrats!", message: fanfare, preferredStyle: .Alert)
+        weak var safeSelf = self
+        alert.addAction(UIAlertAction(title: "Retry", style: .Default, handler: { (a: UIAlertAction!) in
+            safeSelf!.startDate = NSDate()
+            safeSelf!.selectedCells = []
+            safeSelf!.disabledCells = []
+            safeSelf!.correctCells = []
+            safeSelf!.incorrectCells = []
+            safeSelf!._cellDescriptions = nil
+            safeSelf!.collectionView!.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(alert, animated: true, completion: nil)
     }
 }

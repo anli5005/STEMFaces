@@ -8,11 +8,11 @@
 
 import UIKit
 
-private let matchingStatusMessages: [String: (String, UIColor)] = [
-    "nothing":   ("",            UIColor.blackColor()),
-    "selected":  ("✓",           UIColor.blueColor()),
-    "incorrect": ("✕ Incorrect", UIColor.redColor()),
-    "correct":   ("✓ Correct",   UIColor(red: 0, green: 176 / 255, blue: 0, alpha: 1))
+private let matchingStatusMessages: [String: (String, UIColor, Bool)] = [
+    "nothing":   ("",            UIColor.blackColor(), false),
+    "selected":  ("✓",           UIColor.blueColor(), false),
+    "incorrect": ("✕ Incorrect", UIColor.redColor(), false),
+    "correct":   ("✓ Correct",   UIColor(red: 0, green: 176 / 255, blue: 0, alpha: 1), true)
 ]
 
 class MatchingCollectionViewCell: UICollectionViewCell {
@@ -28,6 +28,7 @@ class MatchingCollectionViewCell: UICollectionViewCell {
             self.updateStatusLabel()
         }
     }
+    var elementDisabled: Bool = false
     var userCorrect: Bool? = nil {
         didSet {
             self.updateStatusLabel()
@@ -65,22 +66,26 @@ class MatchingCollectionViewCell: UICollectionViewCell {
     }
     
     func hideUserScore(sender: AnyObject?) { // I don't care about sender; it's just for the NSTimer
-        self.userCorrect = nil
+        if self.userCorrect != true {
+            self.userCorrect = nil
+        }
         self.updateStatusLabel()
     }
     
     func updateStatusLabel() {
-        // 1. If the user is correct or incorrect...
-        var status: (String, UIColor)
+        var status: (String, UIColor, Bool)
         if let correct = self.userCorrect {
-            // 1a. ...update the status.
-            status = matchingStatusMessages[correct ? "correct" : "incorrect"]!
+            if correct {
+                status = matchingStatusMessages["correct"]!
+            } else {
+                status = matchingStatusMessages[self.elementSelected ? "selected" : "incorrect"]!
+            }
         } else {
-            // 1b. If the cell's selected, update the status.
             status = matchingStatusMessages[self.elementSelected ? "selected" : "nothing"]!
         }
-        // 2. Apply the status to the label.
+        // Apply the status to the label.
         self.statusLabel.text = status.0
         self.statusLabel.textColor = status.1
+        self.statusLabel.font = status.2 ? UIFont.boldSystemFontOfSize(18) : UIFont.systemFontOfSize(18)
     }
 }
