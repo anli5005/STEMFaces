@@ -480,6 +480,14 @@
                             <outlet property="delegate" destination="xk9-6C-GkE" id="RMY-uT-90N"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HRm-0K-mCS"/>
+                        <barButtonItem title="Retry" id="zXM-90-SQt">
+                            <connections>
+                                <action selector="retryButtonTapped:" destination="xk9-6C-GkE" id="goX-ra-RQw"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="VOY-Ky-4nI"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yhk-GS-5UT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -663,7 +671,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Tdu-9k-J0D">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e1k-xi-2YF" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="e1k-xi-2YF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bfq-7S-uje">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -672,6 +680,7 @@
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="rnI-MF-V95">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="xk9-6C-GkE" kind="relationship" relationship="rootViewController" id="n6o-Sk-Ipo"/>

@@ -72,6 +72,7 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         }
         return _cellDescriptions!
     }
+    var images = [Int: UIImage]()
     
     var selectedCells: [Int] = {
         var a = [Int]()
@@ -109,30 +110,36 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         
         // Add an image if possible
         if cell.getCellType() == .Image {
-            if let setName = nameOfSet {
-                let setFolder = docPath().stringByAppendingPathComponent(setName)
-                let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[cell.personId!]["id"] as Int))
-                let fileManager = NSFileManager.defaultManager()
-                if !fileManager.fileExistsAtPath(imageFolder) {
-                    // Make the folder
-                    fileManager.createDirectoryAtPath(imageFolder, withIntermediateDirectories: false, attributes: nil, error: nil)
-                }
-                var items = [String]()
-                for item in (fileManager.contentsOfDirectoryAtPath(imageFolder, error: nil) as [String]) {
-                    if !item.hasPrefix(".") && item.stringByDeletingPathExtension.toInt() != nil {
-                        items.append(item)
+            if images[indexPath.item] == nil {
+                if let setName = nameOfSet {
+                    let setFolder = docPath().stringByAppendingPathComponent(setName)
+                    let imageFolder = setFolder.stringByAppendingPathComponent("Images").stringByAppendingPathComponent(String(faces[cell.personId!]["id"] as Int))
+                    let fileManager = NSFileManager.defaultManager()
+                    if !fileManager.fileExistsAtPath(imageFolder) {
+                        // Make the folder
+                        fileManager.createDirectoryAtPath(imageFolder, withIntermediateDirectories: false, attributes: nil, error: nil)
+                    }
+                    var items = [String]()
+                    for item in (fileManager.contentsOfDirectoryAtPath(imageFolder, error: nil) as [String]) {
+                        if !item.hasPrefix(".") && item.stringByDeletingPathExtension.toInt() != nil {
+                            items.append(item)
+                        }
+                    }
+                    let imageList = sorted(sorted(items, { (in1: String, in2: String) in
+                        return (rand() % 2) == 1
+                    }), { (in1: String, in2: String) in
+                        return (rand() % 2) == 1
+                    })
+                    if let imageFile = imageList.first {
+                        self.images[indexPath.item] = UIImage(contentsOfFile: imageFolder.stringByAppendingPathComponent(imageFile))
+                    } else {
+                        cell.imageView!.image = nil
                     }
                 }
-                let imageList = sorted(sorted(items, { (in1: String, in2: String) in
-                    return (rand() % 2) == 1
-                }), { (in1: String, in2: String) in
-                    return (rand() % 2) == 1
-                })
-                if let imageFile = imageList.first {
-                    cell.imageView!.image = UIImage(contentsOfFile: imageFolder.stringByAppendingPathComponent(imageFile))
-                } else {
-                    cell.imageView!.image = nil
-                }
+            }
+            // Add image to cell
+            if let image = self.images[indexPath.item] {
+                cell.imageView!.image = image
             }
         }
         
@@ -151,7 +158,10 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
     private var collectionViewSize = CGSize(width: 0, height: 0)
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: self.collectionViewSize.width / 2, height: self.collectionViewSize.height / 4)
+        let height = self.collectionViewSize.height
+        let navbar = self.navigationController?.navigationBar.frame.size.height
+        let toolbar = self.navigationController?.toolbar.frame.size.height
+        return CGSize(width: self.collectionViewSize.width / 2, height: (height - ((navbar ?? 0) + (toolbar ?? 0))) / 4)
     }
     
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -220,15 +230,24 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         let alert = UIAlertController(title: "Congrats!", message: fanfare, preferredStyle: .Alert)
         weak var safeSelf = self
         alert.addAction(UIAlertAction(title: "Retry", style: .Default, handler: { (a: UIAlertAction!) in
-            safeSelf!.startDate = NSDate()
-            safeSelf!.selectedCells = []
-            safeSelf!.disabledCells = []
-            safeSelf!.correctCells = []
-            safeSelf!.incorrectCells = []
-            safeSelf!._cellDescriptions = nil
-            safeSelf!.collectionView!.reloadData()
+            safeSelf!.retryMatching()
         }))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func retryMatching() {
+        self.startDate = NSDate()
+        self.selectedCells = []
+        self.disabledCells = []
+        self.correctCells = []
+        self.incorrectCells = []
+        self._cellDescriptions = nil
+        self.images = [:]
+        self.collectionView!.reloadData()
+    }
+    
+    @IBAction func retryButtonTapped(sender: AnyObject!) {
+        self.retryMatching()
     }
 }
