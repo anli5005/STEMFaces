@@ -21,7 +21,7 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
     /** A list of sets currently shown on the table view. */
     var objects = [String]()
     
-    private let options = ["About", "Rate", "Support"]
+    private let options = ["Rate", "Support"]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -155,6 +155,21 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 {
+            self.performSegueWithIdentifier("showDetail", sender: self)
+        } else {
+            switch indexPath.row {
+            case 0:
+                UIApplication.sharedApplication().openURL(NSURL(string: rateUrl)!)
+            case 1:
+                UIApplication.sharedApplication().openURL(NSURL(string: supportUrl)!)
+            default:
+                assertionFailure("Unexpected value for indexPath.row: \(indexPath.row)")
+            }
+        }
+    }
+    
     // MARK: Detail Controller Delegate
     func didRenameSetTo(newName: String, previousName: String) {
         tableView.reloadData()
@@ -170,7 +185,5 @@ class MasterViewController: UITableViewController, DetailControllerDelegate {
             tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: tIndex, inSection: 0)], withRowAnimation: .Fade)
         }
     }
-    
-    
 }
 
