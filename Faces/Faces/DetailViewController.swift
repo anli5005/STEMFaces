@@ -325,19 +325,12 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
         if indexPath.section == 0 {
             return CGSize(width: 158, height: 87)
         } else {
-            var width = self.collectionViewSize.width
-            let s = self.splitViewController
-            if let split = s {
-                if !split.collapsed {
-                    width -= (split.primaryColumnWidth + 1)
-                }
-            }
-            return CGSize(width: width / 3, height: 192)
+            return CGSize(width: 128, height: 182)
         }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return section == 0 ? UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) : UIEdgeInsetsZero
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
