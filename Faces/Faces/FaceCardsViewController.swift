@@ -25,9 +25,6 @@ class FaceCardsViewController: UIPageViewController, UIPageViewControllerDataSou
     
     private func applyScrollInsetsTo(scrollView: UIScrollView?) {
         var navbarHeight = self.navigationController!.navigationBar.frame.size.height
-        if self.prefersStatusBarHidden() {
-            navbarHeight -= UIApplication.sharedApplication().statusBarFrame.size.width
-        }
         scrollView?.contentInset = UIEdgeInsetsMake(navbarHeight + 20, 0, 0, 0)
     }
     

@@ -24,11 +24,6 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         
         // Do any additional setup after loading the view.
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCollectionView", name: UIViewControllerShowDetailTargetDidChangeNotification, object: nil)
-    }
-    
-    func reloadCollectionView() {
-        self.collectionView!.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -150,11 +145,6 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         }
         
         // Add colors
-        if (indexPath.item % 2) == Int(floor(Double(indexPath.item) / 2)) % 2 {
-            cell.backgroundColor = UIColor(white: 1.00, alpha: 1)
-        } else {
-            cell.backgroundColor = UIColor(white: 0.75, alpha: 1)
-        }
         
         cell.elementDisabled = contains(disabledCells, indexPath.item)
         
@@ -167,14 +157,8 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         let height = self.collectionViewSize.height
         let navbar = self.navigationController?.navigationBar.frame.size.height
         let toolbar = self.navigationController?.toolbar.frame.size.height
-        let s = self.splitViewController
-        var width = self.collectionViewSize.width
-        if let split = s {
-            if !split.collapsed {
-                width -= (split.primaryColumnWidth + 1)
-            }
-        }
-        return CGSize(width: width / 2, height: (height - ((navbar ?? 0) + (toolbar ?? 0))) / 4)
+        let size = CGSize(width: 150, height: (height - ((navbar ?? 0) + (toolbar ?? 0))) / 4)
+        return size
     }
     
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -224,13 +208,17 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        self.collectionViewSize = size
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        collectionView?.reloadData()
+        self.collectionViewSize = size
+        println("** STATS FOR viewWillTransitionToSize **")
+        println(self.collectionViewSize)
+        println(self.view.frame.size)
+        println("** END STATS **")
+        self.collectionView!.collectionViewLayout.invalidateLayout()
     }
     
     func fanfare() {
@@ -256,7 +244,6 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         self.incorrectCells = []
         self._cellDescriptions = nil
         self.images = [:]
-        self.collectionView!.reloadData()
     }
     
     @IBAction func retryButtonTapped(sender: AnyObject!) {

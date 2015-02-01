@@ -88,4 +88,11 @@ class MatchingCollectionViewCell: UICollectionViewCell {
         self.statusLabel.textColor = status.1
         self.statusLabel.font = status.2 ? UIFont.boldSystemFontOfSize(18) : UIFont.systemFontOfSize(18)
     }
+    
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
+        let path = UIBezierPath(rect: rect)
+        UIColor.blackColor().setStroke()
+        path.stroke()
+    }
 }
