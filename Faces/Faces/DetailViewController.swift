@@ -325,7 +325,14 @@ class DetailViewController: UICollectionViewController, UICollectionViewDelegate
         if indexPath.section == 0 {
             return CGSize(width: 158, height: 87)
         } else {
-            return CGSize(width: self.collectionViewSize.width / 3, height: 192)
+            var width = self.collectionViewSize.width
+            let s = self.splitViewController
+            if let split = s {
+                if !split.collapsed {
+                    width -= (split.primaryColumnWidth + 1)
+                }
+            }
+            return CGSize(width: width / 3, height: 192)
         }
     }
     
