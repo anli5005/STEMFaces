@@ -23,6 +23,12 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         self.collectionView!.reloadData()
         
         // Do any additional setup after loading the view.
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCollectionView", name: UIViewControllerShowDetailTargetDidChangeNotification, object: nil)
+    }
+    
+    func reloadCollectionView() {
+        self.collectionView!.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -161,7 +167,14 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         let height = self.collectionViewSize.height
         let navbar = self.navigationController?.navigationBar.frame.size.height
         let toolbar = self.navigationController?.toolbar.frame.size.height
-        return CGSize(width: self.collectionViewSize.width / 2, height: (height - ((navbar ?? 0) + (toolbar ?? 0))) / 4)
+        let s = self.splitViewController
+        var width = self.collectionViewSize.width
+        if let split = s {
+            if !split.collapsed {
+                width -= (split.primaryColumnWidth + 1)
+            }
+        }
+        return CGSize(width: width / 2, height: (height - ((navbar ?? 0) + (toolbar ?? 0))) / 4)
     }
     
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -178,11 +191,10 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
                 if selectedCells.count > 1 {
                     // Evaluate the choices
                     let cView: UICollectionView = self.collectionView!
-                    let cCell = cView.cellForItemAtIndexPath(NSIndexPath(forItem: selectedCells[0], inSection: 0))!
-                    let otherCell = cCell as MatchingCollectionViewCell
-                    if cell.getCellType() != otherCell.getCellType() {
+                    let otherType = cellDescriptions.0[selectedCells[0]]
+                    if cell.getCellType() != otherType {
                         // Check the indexes of the faces
-                        if (cell.personId == otherCell.personId) {
+                        if (cell.personId == cellDescriptions.1[selectedCells[0]]) {
                             disabledCells.extend(selectedCells)
                             correctCells.extend(selectedCells)
                         } else {
