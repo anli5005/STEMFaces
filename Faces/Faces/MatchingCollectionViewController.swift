@@ -244,6 +244,7 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
         self.incorrectCells = []
         self._cellDescriptions = nil
         self.images = [:]
+        self.collectionView!.reloadData()
     }
     
     @IBAction func retryButtonTapped(sender: AnyObject!) {
