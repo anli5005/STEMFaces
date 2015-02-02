@@ -359,21 +359,7 @@
                     <toolbarItems>
                         <barButtonItem id="9zx-F8-K7j"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="pLe-tN-0tL">
-                        <barButtonItem key="rightBarButtonItem" width="200" id="hT9-zU-bMD">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Oji-BD-hcd">
-                                <rect key="frame" x="315" y="7" width="200" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Both Sides" width="100"/>
-                                    <segment title="Front" width="100"/>
-                                </segments>
-                                <connections>
-                                    <action selector="updateAlwaysShowsName:" destination="Mvr-c5-0Vc" eventType="valueChanged" id="Nzv-qx-NL5"/>
-                                </connections>
-                            </segmentedControl>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="pLe-tN-0tL"/>
                     <connections>
                         <outlet property="aboutLabel" destination="TpK-t4-9mj" id="E8U-3h-P4n"/>
                         <outlet property="imageView" destination="ACs-CC-9cy" id="pmb-XQ-XO2"/>
@@ -381,7 +367,6 @@
                         <outlet property="nextButton" destination="xTp-yQ-LOn" id="N4f-up-b6E"/>
                         <outlet property="numberLabel" destination="0b7-kY-x0L" id="gSQ-7U-WKa"/>
                         <outlet property="previousButton" destination="5Yn-Zd-veY" id="YRv-mX-I0Q"/>
-                        <outlet property="showsNameSegments" destination="Oji-BD-hcd" id="Jjq-aw-mQS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gz8-9D-G7Q" userLabel="First Responder" sceneMemberID="firstResponder"/>

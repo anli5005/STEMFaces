@@ -20,13 +20,16 @@ class FlashcardViewController: UIViewController {
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
-    @IBOutlet weak var showsNameSegments: UISegmentedControl!
-    
     // MARK:
     
-    let shuffledFaces = sorted(faces) { (face1, face2) in
-        return (rand() % 2) == 1
-    }
+    let shuffledFaces: [[String: AnyObject]] = {
+        let f = sorted(faces) { (face1, face2) in
+            return (rand() % 2) == 1
+        }
+        return sorted(f) { (face1, face2) in
+            return (rand() % 2) == 1
+        }
+    }()
     
     var currentFaceIndex: Int = 0 {
         didSet {
@@ -41,26 +44,7 @@ class FlashcardViewController: UIViewController {
         }
     }
     
-    var alwaysShowName: Bool = true {
-        didSet {
-            refreshData()
-        }
-    }
-    
     private var imageLoaded = false
-    
-    @IBAction func updateAlwaysShowsName(sender: UISegmentedControl?) {
-        if let theSender = sender {
-            switch theSender.selectedSegmentIndex {
-            case 0:
-                alwaysShowName = true
-            case 1:
-                alwaysShowName = false
-            default:
-                assert(false, "Unexpected value for selected segment: " + String(theSender.selectedSegmentIndex))
-            }
-        }
-    }
     
     @IBAction func previous(sender: AnyObject?) {
         if currentFaceIndex - 1 >= 0 {
@@ -69,29 +53,23 @@ class FlashcardViewController: UIViewController {
     }
     
     @IBAction func next(sender: AnyObject?) {
-        if alwaysShowName {
+        if revealed {
             if currentFaceIndex + 1 < shuffledFaces.count {
                 currentFaceIndex += 1
             }
         } else {
-            if revealed {
-                if currentFaceIndex + 1 < shuffledFaces.count {
-                    currentFaceIndex += 1
-                }
-            } else {
-                revealed = true
-            }
+            revealed = true
         }
     }
     
     func refreshData() {
         numberLabel.text = "\(currentFaceIndex + 1) of \(shuffledFaces.count)"
         
-        nameLabel.text = revealed || alwaysShowName ? shuffledFaces[currentFaceIndex]["name"] as String : "Tap Reveal to reveal the name"
+        nameLabel.text = revealed ? shuffledFaces[currentFaceIndex]["name"] as String : "Tap Reveal to reveal the name"
         
-        nameLabel.textColor = !(revealed || alwaysShowName) ? UIColor.grayColor() : UIColor.blackColor()
+        nameLabel.textColor = revealed ? UIColor.blackColor() : UIColor.grayColor()
         
-        nameLabel.font = !(revealed || alwaysShowName) ? nameLabel.font.fontWithSize(18) : nameLabel.font.fontWithSize(36)
+        nameLabel.font = revealed ? nameLabel.font.fontWithSize(36) : nameLabel.font.fontWithSize(18)
         
         aboutLabel.text = (shuffledFaces[currentFaceIndex]["about"] as String)
         
@@ -124,18 +102,14 @@ class FlashcardViewController: UIViewController {
         
         previousButton.enabled = currentFaceIndex - 1 >= 0
         
-        nextButton.enabled = (alwaysShowName || revealed) ? (currentFaceIndex + 1 < shuffledFaces.count) : true
-        nextButton.setTitle((alwaysShowName || revealed) ? "Next" : "Reveal", forState: .Normal)
+        nextButton.enabled = revealed ? (currentFaceIndex + 1 < shuffledFaces.count) : true
+        nextButton.setTitle(revealed ? "Next" : "Reveal", forState: .Normal)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
-        showsNameSegments.setWidth(100, forSegmentAtIndex: 0)
-        showsNameSegments.setWidth(100, forSegmentAtIndex: 1)
-        
         refreshData()
     }
     
