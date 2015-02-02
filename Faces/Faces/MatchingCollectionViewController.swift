@@ -214,10 +214,6 @@ class MatchingCollectionViewController: UICollectionViewController, UICollection
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         self.collectionViewSize = size
-        println("** STATS FOR viewWillTransitionToSize **")
-        println(self.collectionViewSize)
-        println(self.view.frame.size)
-        println("** END STATS **")
         self.collectionView!.collectionViewLayout.invalidateLayout()
     }
     
