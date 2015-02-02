@@ -14,6 +14,10 @@ class FaceCardsViewController: UIPageViewController, UIPageViewControllerDataSou
     
     weak var parentController: DetailViewController!
     
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        self.recalculateScrollInsets()
+    }
+    
     func viewControllerForFaceCardAtIndex(index: Int) -> FaceCardViewController? {
         let v = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("card") as FaceCardViewController
         v.parentController = parentController
@@ -25,7 +29,9 @@ class FaceCardsViewController: UIPageViewController, UIPageViewControllerDataSou
     
     private func applyScrollInsetsTo(scrollView: UIScrollView?) {
         var navbarHeight = self.navigationController!.navigationBar.frame.size.height
-        scrollView?.contentInset = UIEdgeInsetsMake(navbarHeight + 20, 0, 0, 0)
+        var sizeClass = self.traitCollection.verticalSizeClass == .Compact
+        var extraHeight: CGFloat = sizeClass ? 3 : 20
+        scrollView?.contentInset = UIEdgeInsetsMake(navbarHeight + extraHeight, 0, 0, 0)
     }
     
     private func recalculateScrollInsets() {
