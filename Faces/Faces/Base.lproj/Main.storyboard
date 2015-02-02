@@ -256,7 +256,7 @@
             </objects>
             <point key="canvasLocation" x="728" y="99"/>
         </scene>
-        <!--Flashcard View Controller-->
+        <!--Flash Cards-->
         <scene sceneID="cbg-YA-H8w">
             <objects>
                 <viewController id="Mvr-c5-0Vc" customClass="FlashcardViewController" customModule="Face_Cards" customModuleProvider="target" sceneMemberID="viewController">
@@ -360,7 +360,7 @@
                     <toolbarItems>
                         <barButtonItem id="9zx-F8-K7j"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="pLe-tN-0tL"/>
+                    <navigationItem key="navigationItem" title="Flash Cards" id="pLe-tN-0tL"/>
                     <connections>
                         <outlet property="aboutLabel" destination="TpK-t4-9mj" id="E8U-3h-P4n"/>
                         <outlet property="imageView" destination="ACs-CC-9cy" id="pmb-XQ-XO2"/>
@@ -374,7 +374,7 @@
             </objects>
             <point key="canvasLocation" x="508" y="1572"/>
         </scene>
-        <!--Matching Collection View Controller-->
+        <!--Matching-->
         <scene sceneID="WJs-wu-rDJ">
             <objects>
                 <collectionViewController id="xk9-6C-GkE" customClass="MatchingCollectionViewController" customModule="Face_Cards" customModuleProvider="target" sceneMemberID="viewController">
@@ -474,7 +474,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="VOY-Ky-4nI"/>
+                    <navigationItem key="navigationItem" title="Matching" id="VOY-Ky-4nI"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yhk-GS-5UT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
